@@ -41,7 +41,7 @@ const OnePass = ({ navigation,route }) => {
 
         const otpResp = await dispatch(otpVerifyApi(
             {
-                "loginID": "C000003",
+                "LoginID": "C000003",
                 "otp": 1111,
                 "smsTypeID": 2
               }

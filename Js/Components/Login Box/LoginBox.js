@@ -13,15 +13,12 @@ import {
 } from '../../Utils/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
-const LoginBox = ({onInputChange}) => {
+const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass}) => {
 
   const [isCustomerIdFocused, setIsCustomerIdFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [CustomerID,setCustomerID] = useState('')
-  const [pass,setPass] = useState('')
- 
-
+  
   const handleInputChanges = ()=>{
     onInputChange(setCustomerID,setPass)
   }
@@ -153,6 +150,7 @@ const LoginBox = ({onInputChange}) => {
                           fontSize(16),
                           styles.fontwhite,
                         ]}
+                        value={pass}
                         maxLength={12}
                         secureTextEntry={!showPassword}
                         onChangeText={(text)=>{

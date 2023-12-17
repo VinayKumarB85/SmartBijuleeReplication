@@ -7,7 +7,7 @@ class ApiClient {
         axios.defaults.headers.common['Content-Type'] = 'multipart/form-data';
         axios.defaults.headers.common['Cache-Control'] = 'no-cache, no-store';
         axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios.defaults.headers.common['uid'] = token;
         if (token) {
             // axios.defaults.headers.common['Authorization'] = token;

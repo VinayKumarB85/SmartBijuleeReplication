@@ -7,55 +7,69 @@ import { otpEndpoint } from '../../Constants/SettingCardInfo/Apiurl';
 
 
 // - - - - - Verify User API - - - - - //
+
 export const userVerifyApi = createAsyncThunk(loginEndpoint,
-    async (data, {dispatch,rejectWithValue}) => {
-        const params = {
-            ...data
-        }
+    async (requestData, { getState, fulfillWithValue, rejectWithValue, dispatch }) => {
+        console.log('requestData',requestData)
         const request = {
             method: "post",
             url: loginEndpoint,
-            body: {...data},
-        };
-        try{
-            const res = await dispatch(ApiManager({},request))
-            // const res = await ApiManager({}, request)
-            console.log("esresfdgfews",res)
-            return res
-        } catch  (error){
-            const data = {
-                status : error.status,
-                code: error.data.Code,
-                message: error.data.Msg
+            data: {
+                ...requestData
             }
-            return await rejectWithValue(data)
-        }   
-})
-// - - - - - Login User API - - - - - //
-export const otpVerifyApi = createAsyncThunk(otpEndpoint,
-    async (data, {dispatch,rejectWithValue}) => {
-        const params = {
-            ...data
+        };
+        try {
+            const res = await dispatch(ApiManager(getState().auth, request))
+            return fulfillWithValue(res)
+        } catch (error) {
+            return rejectWithValue(error)
         }
+    }
+)
+
+export const otpVerifyApi = createAsyncThunk(otpEndpoint,
+    async (requestData, { getState, fulfillWithValue, rejectWithValue, dispatch }) => {
         const request = {
             method: "post",
-            url:otpEndpoint,
-            body: {...data},
-        };
-
-        const addHeaders = {
-            "x-app-id" : 4,
-        }
-        try{
-            const res = await dispatch(ApiManager({}, request));
-            return res;
-        } catch(error){
-            console.log("errorororor", error)
-            const data = {
-                status : error.status,
-                code: error.data.Code,
-                message: error.data.Msg
+            url: otpEndpoint,
+            data: {
+                ...requestData
             }
-            return rejectWithValue(data)
-        }   
-})
+        };
+        console.log('request',request,requestData)
+        try {
+            const res = await dispatch(ApiManager(getState().auth, request))
+            return fulfillWithValue(res)
+        } catch (error) {
+            return rejectWithValue(error)
+        }
+    }
+)
+// - - - - - Login User API - - - - - //
+// export const otpVerifyApi = createAsyncThunk(otpEndpoint,
+//     async (data, {dispatch,rejectWithValue}) => {
+//         const params = {
+//             ...data
+//         }
+//         const request = {
+//             method: "post",
+//             url:otpEndpoint,
+//             body: {...data},
+//         };
+
+//         const addHeaders = {
+//             "x-app-id" : 4,
+//         }
+//         try{
+//             const res = await dispatch(ApiManager({}, request));
+//             return res;
+//         } catch(error){
+//             console.log("errorororor", error)
+//             const data = {
+//                 status : error.status,
+//                 code: error.data.Code,
+//                 message: error.data.Msg
+//             }
+//             return rejectWithValue(data)
+//         }   
+// })

@@ -33,7 +33,7 @@ const MDI = ({ navigation }) => {
                             title2={' Demand'}
                             Desc={'Are you surpassing your santioned demand?'} />
                     </View>
-                    <View style={[marginPosition(30)]}>
+                    <View style={[marginPosition(0,20,0,20)]}>
                         <HistoryBox text1={'Sanctioned'} text2={' Load'} />
                     </View>
                     <View style={[marginPosition(15, 20, 0, 20), styles.bgbarback, radius(18), screenHeight(1.85), padding(0, 20, 10)

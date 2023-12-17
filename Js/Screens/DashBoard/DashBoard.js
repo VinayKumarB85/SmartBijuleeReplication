@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native'
-import React, { useState, useNavigation } from 'react'
+import React, { useState, useNavigation, useEffect } from 'react'
 import { flex, fontSize, heightValue, marginPosition, radius, screenHeight, styles, widthValue, paddingPosition } from '../../Utils/Styles'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import Header from '../../Components/Header/Header'
@@ -7,13 +7,22 @@ import Box1 from '../../Components/Box1/DashBoardComponent'
 import Graph from '../../Components/Graph/Graph'
 import DonutChart from '../../Components/DonutChart'
 import DrawerScreenWrapper from '../Drawer Nav/Drawers/DrawerScreenWrapper'
+import { dashBoardApi } from '../../api/userApi'
+import { useDispatch,useSelector } from 'react-redux'
 
 const DashBoard = ({ navigation }) => {
 
+    const globalVariableDashboard = useSelector((state)=>state.userDetails.DashBoard)
+  console.log('globalVariableDashboard',globalVariableDashboard);
     const openDrawer = () => {
         navigation.toggleDrawer();
     }
 
+    const dispatch = useDispatch();
+    useEffect(()=>{
+
+       dispatch (dashBoardApi())
+    },[])
     return (
         <DrawerScreenWrapper>
             <SafeAreaView style={[flex(1), { width: widthValue(1), }, paddingPosition(30), styles.bglightblack]}>
