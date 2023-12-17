@@ -1,0 +1,25 @@
+export const Colors = {
+    black: "black",
+    white: "white",
+    red: "#eb2127",
+    gray: "#6b6b6b",
+    lightGray: "#f2f2f2",
+    darkShadowRed: "#e70019",
+    lightShadowRed: "#ff000f",
+    darkBlue: "#1d2c56",
+    lightblack: "#111113",
+    lightgreen: "#077227",
+    darkgreen: "#04632a",
+    blue: '#22c2ea',
+    green: "#64ad64",
+    fontwhite: "#f7f7f7",
+    lightblue: "#32ddff",
+    greyish: "#262f40",
+    greenish: "#39763b",
+    lightgreyish: "#394252",
+    gr: "#ada7a8",
+    bar: '#3c3c42',
+    barback: '#29292e',
+    Drawer: '#282f42'
+
+}
