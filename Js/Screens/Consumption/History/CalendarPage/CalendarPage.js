@@ -24,7 +24,6 @@ const CalendarPage = () => {
 
     const customDayHeaderStyles = (date, selected, today, marking) => {
         // const isWithinRangeDate = isWithinRange(date);
-    
         return {
           dayOfWeekStyles: {
             color: 'white',

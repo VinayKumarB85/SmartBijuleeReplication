@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import DrawerScreenWrapper from '../Drawer Nav/Drawers/DrawerScreenWrapper';
 import {
     flex,
@@ -19,8 +19,63 @@ import { RollInLeft, RotateInUpLeft } from 'react-native-reanimated';
 import FaqButtons from './FaqButton/FaqButtons';
 import FaqDetailsButton from './FaqDetailsButton/FaqDetailsButton';
 import SettingHeader from '../../Components/Header/SettingHeader/SettingHeader';
+import { useDispatch,useSelector } from 'react-redux';
+import { faqApi } from '../../api/userApi/faqApi';
 
 const FAQ = ({ navigation }) => {
+    const globalVariableFaq = useSelector((state)=>state.userDetails.faqUser)
+    console.log('globalVariableFaq',globalVariableFaq);
+
+    
+    const dispatch = useDispatch();
+
+    
+
+    const faq = async ()=>{
+        try{
+        const faqResp = await dispatch(faqApi(
+            {
+                "loginID": "C000003",
+                "langID": 1
+              }
+        ))
+        console.log('faqDetails',faqResp)
+            } catch(error){
+                console.error('Error Fetching Faq',error)
+            }
+    //         const loginId = faqResp.meta.arg.loginID;
+    // const languageId = faqResp.meta.arg.langID;
+    // console.log('loginId',loginId)
+    // console.log('languageId',languageId)
+    }
+
+    useEffect(()=>{
+        faq();
+    },[])
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const openDrawer = () => {
         navigation.toggleDrawer();
     };

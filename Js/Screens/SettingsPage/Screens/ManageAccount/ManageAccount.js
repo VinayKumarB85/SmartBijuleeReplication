@@ -40,8 +40,8 @@ const ManageAccount = () => {
         />
       </View>
       {!showConsumer && (
-      <View style={[styles.bggreenish,{width:widthValue(8),height:widthValue(8)},radius(widthValue(4)),styles.allCenter,styles.positionAbsolute,{top:heightValue(4.1),zIndex:99,right:0}]}>
-         <TouchableWithoutFeedback onPress={goToNextPage} ><FontAwesome5 name='plus' style={[styles.fontwhite,fontSize(20)]}/></TouchableWithoutFeedback>
+      <View style={[styles.bggreenish,{width:widthValue(9),height:widthValue(9)},radius(widthValue(4.5)),styles.allCenter,styles.positionAbsolute,{top:heightValue(4.1),zIndex:99,right:0}]}>
+         <TouchableWithoutFeedback onPress={goToNextPage} ><FontAwesome5 name='plus' style={[styles.fontwhite,fontSize(18)]}/></TouchableWithoutFeedback>
       </View> )}
 
       {/* {showConsumer && ( 

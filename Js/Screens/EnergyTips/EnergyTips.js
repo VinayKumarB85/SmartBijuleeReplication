@@ -41,7 +41,7 @@ const EnergyTips = ({ navigation }) => {
                     <View style={[marginPosition(10, 20, 0, 20)]}>
                         <Header2
                             title1={'Energy'}
-                            title2={' savings Tips'}
+                            title2={' Savings Tips'}
                             Desc={
                                 'Simple methods can help you save a significant amount of energy'
                             }
@@ -53,7 +53,7 @@ const EnergyTips = ({ navigation }) => {
                             { width: widthValue(1.1), height: heightValue(3) },
                             marginPosition(10, 30, 0, 20),
                         ]}>
-                        <LottieView source={require('../../../assets/light.json')} style={[{ width: '100%', height: '100%' }]} autoplay />
+                         <LottieView source={require('../../../lightBulb.json')} loop />
                     </View>
 
                     <View
@@ -61,13 +61,15 @@ const EnergyTips = ({ navigation }) => {
                         <Text style={[styles.fontwhite, marginPosition(10, 0, 20, 0), fontSize(18)]}>
                             Saving <Text style={[styles.green]}>Guidelines</Text>
                         </Text>
+
+                        
                         <EnergyTipsComponent
                             tipName={'Energy Tips'}
                             tipDesc={
                                 'Ensure that all insulation is in a state of good repair.Finally,encourage staff to turn off the office equipment when it is not being used'
                             }
                         />
-                        <EnergyTipsComponent
+                        {/* <EnergyTipsComponent
                             tipName={'Ventilation'}
                             tipDesc={
                                 'Check that windows are not being opened to avoid overheating during winter months - turn down the overheating instead. Ensure kitchen fans are swicthed off when no cooking is taking place'
@@ -102,13 +104,8 @@ const EnergyTips = ({ navigation }) => {
                             tipDesc={
                                 'Ensure that someone is responsible for switching off lights in room or area when not in use.check whether you have the more energy efficient lights in your fittings. Clean your tube light and bulbs regularly. '
                             }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Air Conditioner'}
-                            tipDesc={
-                                'Set temperature controls for cooling to 24 degrees or even higher . Lower settings require more cooling energy.Clean the filter at least once in a month to avoid more energy consumption by AC.'
-                            }
-                        />
+                        /> */}
+                        
                     </View>
                 </ScrollView>
             </View>

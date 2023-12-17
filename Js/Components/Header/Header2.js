@@ -7,8 +7,8 @@ const Header2 = ({ title1, title2, Desc }) => {
 
         <View>
             <View style={[styles.row,]}>
-                <Text style={[fontSize(22), styles.fontwhite,]}>{title1}</Text>
-                <Text style={[fontSize(22), styles.green,]}>{title2}</Text>
+                <Text style={[fontSize(20), styles.fontwhite,]}>{title1}</Text>
+                <Text style={[fontSize(20), styles.green,]}>{title2}</Text>
             </View>
             <Text style={[fontSize(12), styles.fontwhite, { marginTop: 10 }, lineHeight(20)]}>{Desc}</Text>
         </View>
