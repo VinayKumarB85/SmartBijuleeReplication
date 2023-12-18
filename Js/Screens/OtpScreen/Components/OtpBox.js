@@ -71,7 +71,6 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                             </Text>
                             <View style={[{
                                 marginLeft: widthValue(18),
-
                                 marginTop: heightValue(30)
 
                             }]}>

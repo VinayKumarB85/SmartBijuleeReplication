@@ -98,7 +98,7 @@ PODS:
     - Base64 (~> 1.1.2)
   - libevent (2.1.12)
   - lottie-ios (4.3.4)
-  - lottie-react-native (6.4.1):
+  - lottie-react-native (6.4.0):
     - lottie-ios (~> 4.3.3)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
@@ -756,7 +756,7 @@ SPEC CHECKSUMS:
   JWT: ef71dfb03e1f842081e64dc42eef0e164f35d251
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   lottie-ios: 3d98679b41fa6fd6aff2352b3953dbd3df8a397e
-  lottie-react-native: a2ae9c27c273b060b2affff2957bc0ff7fdca353
+  lottie-react-native: 3a3084faddd3891c276f23fd6e797b83f2021bbc
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 28469809442eb4eb5528462705f7d852948c8a74

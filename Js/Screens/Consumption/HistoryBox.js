@@ -45,8 +45,8 @@ const HistoryBox = ({ text1, text2 }) => {
             ]}>
             <View style={[{width: widthValue(1.5),},styles.flexStart]}> 
                 <View style={[styles.row]}>
-                    <Text style={[styles.fontwhite, fontSize(20)]}>{text1}</Text>
-                    <Text style={[styles.green, fontSize(20)]}>{text2}</Text>
+                    <Text style={[styles.fontwhite, fontSize(21)]}>{text1}</Text>
+                    <Text style={[styles.green, fontSize(21)]}>{text2}</Text>
                 </View>
                     <View>
                         <VictoryChart

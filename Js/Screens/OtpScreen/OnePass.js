@@ -26,13 +26,14 @@ import { useDispatch } from 'react-redux';
 
 const OnePass = ({ navigation,route }) => {
     // console.log(route.params.data.MobileNumber)
-    const [customerNumber,setCustomerNumber] = useState(route.params.data.MobileNumber)
+    const [customerNumber,setCustomerNumber] = useState(route.params.data)
     // const [customerid,setCustomerId] = useState(route.params.)
     // console.log( 'LoginId',customerid);
 
     const [otpError,setOtpError] = useState('')
     const [buttonColor,setButtonColor] = useState('#262f40')
     const [enteredOtp,setEnteredOtp] = useState('')
+    const [loading,setLoading] = useState('')
     console.log('userOtp',enteredOtp)
 
     const  updateButtonColor = (isValid)=>{
@@ -41,6 +42,7 @@ const OnePass = ({ navigation,route }) => {
 
     const dispatch = useDispatch();
 
+    let loader;
     const OtpPage = async  ()=>{
 
         const otpResp = await dispatch(otpVerifyApi(
@@ -52,6 +54,8 @@ const OnePass = ({ navigation,route }) => {
         ))
 
         console.log(otpResp)
+               let loader=otpResp.meta.requestStatus
+        console.log('pending/fullfill',loader)
 
        /*  ----navigate to drawerApp----- */
         if(otpResp.payload.status === 200){
@@ -60,6 +64,7 @@ const OnePass = ({ navigation,route }) => {
                 setOtpError('Invalid OTP')
         }
     }
+    
         
     const loginPage = () => {
         navigation.navigate('Login')
@@ -85,7 +90,7 @@ const OnePass = ({ navigation,route }) => {
                             style={[{ height: heightValue(5.5), width: widthValue(5.5), resizeMode: 'contain' }]}
                         />
                     </TouchableOpacity>   
-                    <OtpBox customerNumber={customerNumber} updateButtonColor={updateButtonColor} onChangeOtp={(otp)=>setEnteredOtp(otp)}/> 
+                    <OtpBox customerNumber={customerNumber} updateButtonColor={updateButtonColor} onChangeOtp={(otp)=>{setEnteredOtp(otp),updateButtonColor(otp)}}/> 
                     
                 
                     <View style={[{width:widthValue(1.4)}]}>
@@ -96,9 +101,7 @@ const OnePass = ({ navigation,route }) => {
                         styles.centerHorizontal,
                     ]}>
                         <View>
-                            <Buttons text={'Sign In'}
-
-                                // onPress={dashBoardpage} 
+                            <Buttons text={loader==="fullfilled"? 'Loading': 'go run'}
                                 onPress={OtpPage}
                                 style={[
                                     {backgroundColor:buttonColor},

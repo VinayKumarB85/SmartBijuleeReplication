@@ -118,3 +118,93 @@ const CalendarPage = () => {
 export default CalendarPage;
 
 
+const login = async () => {
+    const loginresp = await dispatch(userVerifyApi({
+      "LoginID": CustomerID,
+      "password": pass,
+      "confirmation": "N",
+      "deviceInfo": {
+        "deviceID": "122323",
+        "deviceMake": "android",
+        "deviceOS": "android",
+        "deviceOSVersion": "12.1"
+      }
+    }));
+    console.log("login", loginresp);
+  
+    if (loginresp.payload.status === 201) {
+      const CustomerDetails = loginresp.payload.data;
+      const loginId = loginresp.meta.arg.LoginID;
+  
+      navigation.navigate('OnePass', {
+        data: CustomerDetails,
+        Id: loginId,
+      });
+  
+      setLoginError('');
+  
+      const deviceError = loginresp.payload.data.ErrorDescription;
+      if (deviceError === "Login device is different") {
+        Alert.alert(
+          "Login device is different",
+          "Do you want to login on this device and logout from all other devices?",
+          [
+            {
+              text: 'CANCEL',
+            },
+            {
+              text: 'CONFIRM',
+              onPress: () => {
+                // Call the updateConfirmation function here
+                updateConfirmation();
+              },
+            },
+          ]
+        );
+      }
+    }
+  };
+  
+  const updateConfirmation = async () => {
+    // Make another API call to update confirmation to 'Y'
+    const updateConfirmationResp = await dispatch(userVerifyApi({
+      "LoginID": CustomerID,
+      "password": pass,
+      "confirmation": "Y",
+      "deviceInfo": {
+        "deviceID": "122323",
+        "deviceMake": "android",
+        "deviceOS": "android",
+        "deviceOSVersion": "12.1"
+      }
+    }));
+  
+    console.log("updateConfirmationResp", updateConfirmationResp);
+  
+    // Check the response and handle accordingly
+    if (updateConfirmationResp.payload.status === 200) {
+      console.log("Confirmation updated successfully");
+    } else {
+      console.error("Failed to update confirmation");
+    }
+  };
+  
+
+  // const confirmResp = await dispatch(
+      //   userVerifyApi({
+      //     LoginID: CustomerID,
+      //     password: pass,
+      //     confirmation: 'Y',
+      //     deviceInfo: {
+      //       deviceID: deviceID,
+      //       deviceMake: deviceMake,
+      //       deviceOS: deviceOS,
+      //       deviceOSVersion: deviceOSVersion,
+      //     },
+      //   }),
+      // );
+      // console.log('confirmRespone', confirmResp);
+      // const CMobileNum = confirmResp.payload.data.MobileNumber;
+      // const  CLoginId =  confirmResp.meta.arg.LoginID;
+      // console.log('phone:',CMobileNum)
+      // console.log('id:',CLoginId)

@@ -6,8 +6,9 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
-import React, {useState,} from 'react';
+import React, {useState} from 'react';
 import {
   styles,
   fontSize,
@@ -22,29 +23,29 @@ import {
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LoginBox from '../../Components/Login Box/LoginBox';
 // import { loginApi } from '../../api/authApi/loginApi';
-import { useDispatch, useSelector } from 'react-redux';
-import { userVerifyApi } from '../../../Js/api/authApi/loginApi'
-import { loginEndpoint } from '../../Constants/Apiurl';
+import {useDispatch, useSelector} from 'react-redux';
+import {userVerifyApi} from '../../../Js/api/authApi/loginApi';
+import {loginEndpoint} from '../../Constants/Apiurl';
+import DeviceInfo from 'react-native-device-info';
 
 const Login = ({navigation}) => {
+  const globalVariable = useSelector(state => state);
+  console.log('globalVariable', globalVariable);
+  const userSelector = useSelector(state => state.auth.userVerify);
+  console.log(userSelector);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const [loginError, setLoginError] = useState('');
+  const [buttonColor, setButtonColor] = useState('#262f40');
+  const [CustomerID, setCustomerID] = useState('');
+  const [pass, setPass] = useState('');
+  console.log('customerid', CustomerID);
+  console.log('password', pass);
 
-  const globalVariable = useSelector((state)=>state)
-  console.log('globalVariable',globalVariable);
-  const userSelector = useSelector((state)=>state.auth.userVerify)
-  console.log(userSelector)
-  const [loginAttempts,setLoginAttempts] = useState(0)
-  const [loginError,setLoginError] = useState('')
-  const [buttonColor,setButtonColor] = useState('#262f40');
-  const [CustomerID,setCustomerID]=useState('');
-  const [pass,setPass]=useState('');
- console.log('customerid',CustomerID);
- console.log('password',pass);
-  const checkConditions = (pass)=>{
-
-    const isConditionSatisfied = typeof pass==='string' && pass.trim() !== '';
-    console.log("isConditionSatisfied:", isConditionSatisfied);
-    setButtonColor(isConditionSatisfied ? '#262f40' : '#64ad64')
-  }
+  const checkConditions = pass => {
+    const isConditionSatisfied =typeof pass === 'string' && pass.trim() !== '';
+    console.log('isConditionSatisfied:', isConditionSatisfied);
+    setButtonColor(isConditionSatisfied ?'#64ad64':'#262f40');
+  };
 
   const dispatch = useDispatch();
   // const otpPage = () => {
@@ -59,36 +60,82 @@ const Login = ({navigation}) => {
   };
 
   const login = async () => {
-    const loginresp = await dispatch(userVerifyApi(
-      {
-            "LoginID": CustomerID,
-            "password": pass,
-            "confirmation": "N",
-            "deviceInfo": {
-              "deviceID": "122323",
-              "deviceMake": "android",
-              "deviceOS": "android",
-              "deviceOSVersion": "12.1"
-          } 
+    const deviceID = await DeviceInfo.getUniqueId();
+    const deviceMake = await DeviceInfo.getManufacturer();
+    const deviceOS = await DeviceInfo.getSystemName();
+    const deviceOSVersion = await DeviceInfo.getSystemVersion();
+    const loginresp = await dispatch(
+      userVerifyApi({
+        LoginID: CustomerID,
+        password: pass,
+        confirmation: 'N',
+        deviceInfo: {
+          deviceID: deviceID,
+          deviceMake: deviceMake,
+          deviceOS: deviceOS,
+          deviceOSVersion: deviceOSVersion,
+        },
+      }),
+    );
+    console.log('loginResponse', loginresp);
+    console.log('deviceInfo', deviceID, deviceMake, deviceOS, deviceOSVersion);
+
+    const CustomerDetails = loginresp.payload.data.MobileNumber;
+    const loginId = loginresp.meta.arg.LoginID;
+
+    if (loginresp.payload.status === 201) {
+      navigation.navigate('OnePass', {
+        data: CustomerDetails,
+        Id: loginId,
+      });
+      setLoginError('');
+      console.log(CustomerDetails);
+      console.log('loginId', loginId);
     }
-    ));
-    console.log("login",loginresp);
 
-
-    if(loginresp.payload.status === 201){
-      const CustomerDetails = loginresp.payload.data
-      const loginId = loginresp.meta.arg.LoginID;
-      navigation.navigate('OnePass',{
-        data:CustomerDetails,
-        Id:loginId,
-      })
-      setLoginError('')
-      console.log(CustomerDetails,);
-      console.log('loginId',loginId);
-    } 
+      const confirmResp = await dispatch(
+        userVerifyApi({
+          LoginID: CustomerID,
+          password: pass,
+          confirmation: 'Y',
+          deviceInfo: {
+            deviceID: deviceID,
+            deviceMake: deviceMake,
+            deviceOS: deviceOS,
+            deviceOSVersion: deviceOSVersion,
+          },
+        }),
+      );
+      console.log('confirmRespone', confirmResp);
+       const CMobileNum = confirmResp.payload.data.MobileNumber;
+      const  CLoginId =  confirmResp.meta.arg.LoginID;
+      console.log('phone:',CMobileNum)
+      console.log('id:',CLoginId)
+    const deviceError = loginresp.payload.data.ErrorDescription;
+    if (deviceError === 'Login device is different') {
+      Alert.alert(
+        'Login device is different',
+        'Do you want to login on this device and logout from all other devices?',
+        [
+          {
+            text: 'CANCEL',
+          },
+          {
+            text: 'CONFIRM',
+            onPress: () => {
+              navigation.navigate('OnePass',{
+                data: CMobileNum,
+                Id: CLoginId,
+              });
+            },
+          },
+        ],
+      );
+    }
   };
 
-  console.log('hi')
+
+  console.log('LoginPage');
   return (
     <KeyboardAvoidingView
       style={[flex(1)]}
@@ -114,17 +161,25 @@ const Login = ({navigation}) => {
               ]}
             />
           </View>
-          <LoginBox onInputChange={checkConditions} onChangeText={(text)=>setCustomerID(text)} onChangepass={(val)=>setPass(val)}/>
+          <LoginBox
+            onChangeText={text => setCustomerID(text)}
+            onChangepass={val => {setPass(val),checkConditions(val)}}
+          />
 
-
-          <View style={[{width:widthValue(1.4)}]}>
-            <Text style={[styles.red,marginPosition(10),styles.textCenter,fontSize(10)]}>{userSelector?.error}</Text>
+          <View style={[{width: widthValue(1.4)}]}>
+            <Text
+              style={[
+                styles.red,
+                marginPosition(10),
+                styles.textCenter,
+                fontSize(10),
+              ]}>
+              {userSelector?.error}
+            </Text>
           </View>
           <TouchableOpacity
-
-
             style={[
-              {backgroundColor:buttonColor},
+              {backgroundColor: buttonColor},
               {
                 width: widthValue(2.6),
 
@@ -137,7 +192,7 @@ const Login = ({navigation}) => {
             ]}
             onPress={login}
             // onPress={otpPage}
-            >
+          >
             <Text style={[fontSize(16), styles.fontwhite]}>Send Otp</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[marginPosition(15)]} onPress={forgotPage}>
@@ -160,5 +215,3 @@ const Login = ({navigation}) => {
 };
 
 export default Login;
-
-

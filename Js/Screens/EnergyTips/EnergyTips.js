@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import EnergyTipsComponent from '../../Components/EnergyTipsComponent/EnergyTipsComponent';
 import DrawerScreenWrapper from '../Drawer Nav/Drawers/DrawerScreenWrapper';
 import {
@@ -11,15 +11,54 @@ import {
     widthValue,
     heightValue,
     padding,
+    radius
 } from '../../Utils/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Header2 from '../../Components/Header/Header2';
 import LottieView from 'lottie-react-native';
+import { useDispatch ,useSelector} from 'react-redux';
+import { energyTipsApi } from '../../api/userApi/energyTipsApi';
 
 const EnergyTips = ({ navigation }) => {
+    const globalVariableEnergyTips = useSelector(state => state);
+    console.log('globalVariableEnergyTips', globalVariableEnergyTips);
+    const userSelector = useSelector(state => state.auth.userVerify);
+    console.log(userSelector);
+    const [energyTipsData,setEnergyTipsData] = useState([])
+    const [loginId,setLoginId] = useState('');
+    const [langId,setLangId] = useState('');
+
+    const LoginId = globalVariableEnergyTips.auth.user.data.CANumber;
+    const LangId = globalVariableEnergyTips.auth.user.data.LangID;
+    
     const openDrawer = () => {
         navigation.toggleDrawer();
     };
+
+    const dispatch = useDispatch();
+
+    const energyTips = async ()=>{
+        try{
+            
+        const energyTipsResp =  await dispatch(energyTipsApi(
+            {
+                "loginID":LoginId,
+                "langID":LangId,
+              }
+        ))
+        console.log('EnergyTips',energyTipsResp)
+        console.log('loginID,langId',energyTipsResp.meta.arg.loginID, energyTipsResp.meta.arg.langID)
+        setEnergyTipsData(energyTipsResp.payload.data.tips)
+        console.log('EnergyTipsResp',energyTipsData)
+
+            }catch(error){
+                console.error('EnergyTipsFetch',error)
+            }
+    }
+    useEffect(()=>{
+        energyTips()
+    },[])
+    
     return (
         <DrawerScreenWrapper>
             <View
@@ -48,12 +87,20 @@ const EnergyTips = ({ navigation }) => {
                         />
                     </View>
 
+                    <View style={[styles.allCenter]}>
                     <View
                         style={[
-                            { width: widthValue(1.1), height: heightValue(3) },
-                            marginPosition(10, 30, 0, 20),
+                            { width: widthValue(1.6), height: widthValue(1.6) },
+                            marginPosition(30, 30, 0, 20),radius(20),
+                            // styles.allCenter,
+                            padding(0,20,30),
+                            styles.bgbarback
                         ]}>
-                         <LottieView source={require('../../../lightBulb.json')} loop />
+                            <Text style={[styles.green,fontSize(26),styles.textLeft]}>Tip 1</Text>
+                            <View style={[styles.allCenter]}>
+                         <LottieView  style={[{width:widthValue(3.5),height:widthValue(2.5)},styles.allCenter]} source={require('../../Bulb.json')} autoPlay loop /></View>
+                         <Text style={[styles.fontwhite,fontSize(16),styles.textCenter]}>Extra Tips</Text>
+                    </View>
                     </View>
 
                     <View
@@ -63,49 +110,9 @@ const EnergyTips = ({ navigation }) => {
                         </Text>
 
                         
-                        <EnergyTipsComponent
-                            tipName={'Energy Tips'}
-                            tipDesc={
-                                'Ensure that all insulation is in a state of good repair.Finally,encourage staff to turn off the office equipment when it is not being used'
-                            }
-                        />
-                        {/* <EnergyTipsComponent
-                            tipName={'Ventilation'}
-                            tipDesc={
-                                'Check that windows are not being opened to avoid overheating during winter months - turn down the overheating instead. Ensure kitchen fans are swicthed off when no cooking is taking place'
-                            }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Microwave Ovens and Electric Kettles'}
-                            tipDesc={
-                                'Microwaves save energy by reducing cooking time.Remember,microwaves cook food from the outside edge towards the center of the dish,so if your cooking more than one item,place larger and thicker items on the outside. '
-                            }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Water Heater'}
-                            tipDesc={
-                                'To help reduce heat loss,always insulate hot water pipes and reducing the temperature setting of water heater from 60 degrees to 50 degrees C. one should save over 18% of the energy used at the highest setting.'
-                            }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Computers'}
-                            tipDesc={
-                                'Turn off the office eqipment when not in use will save more than 50% of the energy. Battery charger like those used in laptops pull the plug when not required and also shut down the computer not in use will reduce system to wear and saves energy.'
-                            }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Refrigerators'}
-                            tipDesc={
-                                'Avoid storing hot/warn food in refrigerators. Allow adequate air circulation inside the refrigerators. Kepp the refrigerator away from all source of heat. Make sure the refrigerator rubber seals are clean an tight'
-                            }
-                        />
-                        <EnergyTipsComponent
-                            tipName={'Lighting'}
-                            tipDesc={
-                                'Ensure that someone is responsible for switching off lights in room or area when not in use.check whether you have the more energy efficient lights in your fittings. Clean your tube light and bulbs regularly. '
-                            }
-                        /> */}
-                        
+                        {energyTipsData.map(({ id, title, description }) => (
+    <EnergyTipsComponent key={id} tipName={title} tipDesc={description} />
+  ))}
                     </View>
                 </ScrollView>
             </View>

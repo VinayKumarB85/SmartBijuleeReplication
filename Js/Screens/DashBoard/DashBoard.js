@@ -13,15 +13,28 @@ import { useDispatch,useSelector } from 'react-redux'
 const DashBoard = ({ navigation }) => {
 
     const globalVariableDashboard = useSelector((state)=>state.userDetails.DashBoard)
-  console.log('globalVariableDashboard',globalVariableDashboard);
+    console.log('globalVariableDashboard',globalVariableDashboard);
+
+  console.log('loginId',globalVariableDashboard)
+  
     const openDrawer = () => {
         navigation.toggleDrawer();
     }
 
     const dispatch = useDispatch();
-    useEffect(()=>{
 
-       dispatch (dashBoardApi())
+    const dashBoardData = async ()=>{
+        const dashBoardResp = await dispatch(dashBoardApi(
+            {
+                "loginID": "C000003",
+                "meterID": 0,
+                "phase": 0
+              }
+        ))
+        console.log('dashBoardResp',dashBoardResp);
+    }
+    useEffect(()=>{
+       dashBoardData();
     },[])
     return (
         <DrawerScreenWrapper>

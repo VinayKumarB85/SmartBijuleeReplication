@@ -105,8 +105,8 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                       styles.borderGreen,
                     ]}
                     value={CustomerID}
-                    onChangeText={onChangeText}
-                 
+                    onChangeText={onChangeText
+                    }
                     onFocus={handleCustomerFocus}
                     onBlur={() => setIsCustomerIdFocused(false)}></TextInput>
                 </View>

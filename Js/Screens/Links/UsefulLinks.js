@@ -26,7 +26,6 @@ const UsefulLinks = ({ navigation }) => {
     const GoToLink = ()=>{
         const url = 'https://www.uday.gov.in/';
         Linking.openURL(url)
-
     }
     const GoToLink2 = ()=>{
         const url2 = 'https://www.ddugjy.gov.in/';
@@ -86,10 +85,11 @@ const UsefulLinks = ({ navigation }) => {
                     </View>
                     <View style={[styles.centerHorizontal]} >
                 <View style={[styles.bgbarback,{width:widthValue(1.15)},marginPosition(0,0,0,25),radius(30),padding(0,10,20),styles.selfStart,styles.row,{gap:10}]}>
-                    <FontAwesome5 name='search' style={[fontSize(24),styles.fontwhite]} />
-                    <TextInput   placeholder='Search' placeholderTextColor={'white'} style={[styles.fontwhite]}/>
+                    <FontAwesome5 name='search' style={[fontSize(20),styles.fontwhite]} />
+                    <TextInput   placeholder='Search' placeholderTextColor={'white'} style={[styles.fontwhite]} onChangeText={(value)=>{if(value === Shortname){
+                        console.log(Shortname)
+                    }}}/>
                 </View>
-
                 <Text style={[styles.fontwhite,fontSize(8),styles.textCenter,marginPosition(10,0,10,0)]}> Click on the redirect to specific page to know more information</Text>
                 <View style={[styles.selfStart,marginPosition(10,0,0,25)]}>
     <FontAwesome6 name={'bolt'} style={[styles.green,fontSize(20)]} />

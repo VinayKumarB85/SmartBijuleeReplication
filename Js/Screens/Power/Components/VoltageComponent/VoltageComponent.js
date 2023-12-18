@@ -50,7 +50,7 @@ const VoltageComponent = () => {
               interpolation={'natural'}
               x={'time'}
               y={'voltage'}
-              style={{data: {stroke: 'green'}}}
+              style={{data: {stroke: '#64ad64'}}}
               scale={{y: heightValue(20) / (graphData.PowerData.length - 1)}}
             />
             <VictoryAxis

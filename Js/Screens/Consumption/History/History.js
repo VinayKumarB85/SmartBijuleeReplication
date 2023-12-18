@@ -55,7 +55,8 @@ const History = ({ navigation }) => {
                     <GraphButtons btnText={'Custom'}
                         onPress={gotoCalendarPage}
                         btnStyle={[radius(12),
-                        padding(0, 8, 17), 
+                        padding(0, 8, 17),
+                        calendarScreen? styles.bggreen :'' 
                         ]}
                         fontStyle={[fontSize(18), styles.fontwhite,]}
                     />
