@@ -29,7 +29,7 @@ const ColorMode = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1), padding(0, 20, 30)]}>
+    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 25, 0, 20)]}>
         <Header2

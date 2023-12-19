@@ -13,7 +13,7 @@ const FeedBack = () => {
   
 
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1), padding(0, 20, 30)]}>
+    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 10, 30, 30)]}>
         <Header2 title1={'Speak Your'} title2={'Mind'} Desc={'Please provide your feedback, it will help us to serve you better'} />

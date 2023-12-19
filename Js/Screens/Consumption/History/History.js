@@ -20,7 +20,7 @@ const History = ({ navigation }) => {
 
     const gotoCalendarPage = ()=>{
         setCalendarScreen(true)
-       setActiveButton(null)
+       setActiveButton('custom')
         
     }
     const handleGraphPage = (page)=>{
@@ -56,27 +56,28 @@ const History = ({ navigation }) => {
                         onPress={gotoCalendarPage}
                         btnStyle={[radius(12),
                         padding(0, 8, 17),
-                        calendarScreen? styles.bggreen :'' 
+                        activeButton==='custom'? styles.bggreen :''
+                         
                         ]}
                         fontStyle={[fontSize(18), styles.fontwhite,]}
                     />
                     <GraphButtons btnText={'Today'}
                         onPress={()=>handleGraphPage(0)}
                         btnStyle={[radius(12), padding(0, 8, 17),
-                            currentPage === 0 ? styles.bggreen : ''
+                            activeButton === 0 ? styles.bggreen : ''
                         ]}
                         fontStyle={[fontSize(18), styles.fontwhite,]}
                     /> 
                      <GraphButtons btnText={'Week'}
                         onPress={()=>handleGraphPage(1)}
                         btnStyle={[radius(12), padding(0, 8, 17),
-                            currentPage === 1 ? styles.bggreen : '' ]}
+                            activeButton === 1 ? styles.bggreen : '' ]}
                         fontStyle={[fontSize(18), styles.fontwhite,]}
                     />
                     <GraphButtons btnText={'Month'}
                         onPress={()=>handleGraphPage(2)}
                         btnStyle={[radius(12), padding(0, 8, 17),
-                            currentPage === 2 ? styles.bggreen : '' ]}
+                            activeButton === 2 ? styles.bggreen : '' ]}
                         fontStyle={[fontSize(18), styles.fontwhite,]}
                     />
                 </View>

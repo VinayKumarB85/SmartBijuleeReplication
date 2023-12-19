@@ -21,7 +21,7 @@ const Terms = () => {
 
 
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1), padding(0, 20, 30)]}>
+    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
       <BackButton />
       <ScrollView style={[marginPosition(10, 25, 0, 20)]}>
         <SettingsName name1={'Terms and '} name2={'condition'} />

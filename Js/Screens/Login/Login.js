@@ -20,26 +20,23 @@ import {
   marginPosition,
   padding,
 } from '../../Utils/Styles';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import LoginBox from '../../Components/Login Box/LoginBox';
-// import { loginApi } from '../../api/authApi/loginApi';
 import {useDispatch, useSelector} from 'react-redux';
 import {userVerifyApi} from '../../../Js/api/authApi/loginApi';
-import {loginEndpoint} from '../../Constants/Apiurl';
 import DeviceInfo from 'react-native-device-info';
+import LottieView from 'lottie-react-native';
 
 const Login = ({navigation}) => {
   const globalVariable = useSelector(state => state);
   console.log('globalVariable', globalVariable);
   const userSelector = useSelector(state => state.auth.userVerify);
   console.log(userSelector);
-  const [loginAttempts, setLoginAttempts] = useState(0);
-  const [loginError, setLoginError] = useState('');
   const [buttonColor, setButtonColor] = useState('#262f40');
   const [CustomerID, setCustomerID] = useState('');
   const [pass, setPass] = useState('');
   console.log('customerid', CustomerID);
   console.log('password', pass);
+  const [loader,setLoader] = useState('Send Otp')
 
   const checkConditions = pass => {
     const isConditionSatisfied =typeof pass === 'string' && pass.trim() !== '';
@@ -60,6 +57,12 @@ const Login = ({navigation}) => {
   };
 
   const login = async () => {
+    setLoader(
+      <View style={[styles.row,styles.centerHorizontal]}>
+      <Text style={[styles.fontwhite,fontSize(16)]}>Loading</Text>
+      <LottieView source={require('../../../loader2.json')} style={[styles.fontwhite,{height:30,width:30}]} autoPlay loop/>
+      </View>
+    )
     const deviceID = await DeviceInfo.getUniqueId();
     const deviceMake = await DeviceInfo.getManufacturer();
     const deviceOS = await DeviceInfo.getSystemName();
@@ -92,7 +95,6 @@ const Login = ({navigation}) => {
       console.log(CustomerDetails);
       console.log('loginId', loginId);
     }
-
       const confirmResp = await dispatch(
         userVerifyApi({
           LoginID: CustomerID,
@@ -182,18 +184,16 @@ const Login = ({navigation}) => {
               {backgroundColor: buttonColor},
               {
                 width: widthValue(2.6),
-
-                // height: heightValue(14),
               },
-              padding(0, 15, 30),
-              marginPosition(40),
+              padding(0, 10, 30),
+              marginPosition(20),
               styles.allCenter,
               radius(40),
             ]}
             onPress={login}
             // onPress={otpPage}
           >
-            <Text style={[fontSize(16), styles.fontwhite]}>Send Otp</Text>
+            <Text style={[fontSize(16), styles.fontwhite]}>{loader}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[marginPosition(15)]} onPress={forgotPage}>
             <Text style={[fontSize(16), styles.fontwhite]}>

@@ -21,12 +21,23 @@ import { useNavigation } from '@react-navigation/native';
 import StackNavigator from '../StackNav/Stack';
 import Comparison from '../Consumption/Comparison/Comparison';
 import History from '../Consumption/History/History';
+import { useSelector } from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerApp = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedDropdown, setSelectedDropdown] = useState(null);
+
+
+
+ const globalVariableDrawerbar = useSelector((state)=>state)
+  console.log('globalVariableDrawerbar',globalVariableDrawerbar);
+
+  const loginId = globalVariableDrawerbar.auth.user.data.CANumber;
+  const name = globalVariableDrawerbar.auth.user.data.Name;
+  console.log('CAnumber',loginId)
+  console.log('Name',name)
 
   const navigation = useNavigation();
   const openModal = () => {
@@ -43,8 +54,7 @@ const DrawerApp = () => {
     && subMenu &&
     subMenu.map((child,childIndex)=>(
     <>
-    {/* {console.log("chhgjhkjklild",child)}
-    {console.log("childIndex",childIndex)} */}
+
       <DrawerItem
             key={childIndex}
             label={child.label}
@@ -62,11 +72,9 @@ const DrawerApp = () => {
             labelStyle={{ color: 'white', fontSize: 13 }}
           />
     </>
-
     ))
   }
   return (
-    
     <Drawer.Navigator
       drawerContent={(props) => {
         return (
@@ -77,8 +85,8 @@ const DrawerApp = () => {
                   source={require('../../../assets/LoginLogo2.png')}
                   style={[{ width: widthValue(3), height: widthValue(3), resizeMode: 'contain', }]}
                 />
-                <Text style={[fontSize(17), styles.fontwhite, { marginTop: 20 }]}>JuliusCeaser</Text>
-                <Text style={[fontSize(15), styles.fontwhite]}>Consumer ID : C000003</Text>
+                <Text style={[fontSize(17), styles.fontwhite, { marginTop: 20 }]}>{name}</Text>
+                <Text style={[fontSize(15), styles.fontwhite]}>{`Consumer ID :${loginId}`}</Text>
               </View>
             <DrawerContentScrollView showsVerticalScrollIndicator={false} {...props} contentContainerStyle={[{paddingTop:0}]} >
               {drawerItems.map((menu, index) => (

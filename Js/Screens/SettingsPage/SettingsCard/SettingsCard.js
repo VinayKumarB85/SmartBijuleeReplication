@@ -8,12 +8,9 @@ import SettingsHeader from '../SettingsHeader/SettingsHeader';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 // import SettingsCardData from '../../../Constants/SettingCardInfo/SettingsCardData'
  
-
-
 const SettingsCard = ({navigation}) => {
 
     const navigateToScreen = (screen)=>{
-      // console.log("ScreenName",ScreenName);
         navigation.navigate(screen)
     }
   return (
@@ -21,7 +18,6 @@ const SettingsCard = ({navigation}) => {
         <SettingsHeader settingTitle1={'Personal'} settingTitle2={' Information'}/>
     {SettingsCardData.perosnalInfoData.map((card,index)=>(
       <View>
-      
         <TouchableWithoutFeedback
         onPress={()=>navigateToScreen(card.screen)}
         key={index}
@@ -118,7 +114,6 @@ const SettingsCard = ({navigation}) => {
           radius(widthValue(5)),
           styles.allCenter,
         ]}>
-        {/* <AntDesign name={card.icon} size={18} color="white" /> */}
         <FontAwesome5 name={card.icon} size={18} color="white" />
       </View>
       <View>

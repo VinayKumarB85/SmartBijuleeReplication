@@ -22,18 +22,14 @@ import Buttons from '../../Components/Buttons';
 import OtpBox from './Components/OtpBox';
 import { otpVerifyApi } from '../../api/authApi';
 import { useDispatch } from 'react-redux';
-
+import LottieView from 'lottie-react-native';
 
 const OnePass = ({ navigation,route }) => {
-    // console.log(route.params.data.MobileNumber)
     const [customerNumber,setCustomerNumber] = useState(route.params.data)
-    // const [customerid,setCustomerId] = useState(route.params.)
-    // console.log( 'LoginId',customerid);
-
     const [otpError,setOtpError] = useState('')
     const [buttonColor,setButtonColor] = useState('#262f40')
     const [enteredOtp,setEnteredOtp] = useState('')
-    const [loading,setLoading] = useState('')
+    const [loading,setLoading] = useState('Sign In')
     console.log('userOtp',enteredOtp)
 
     const  updateButtonColor = (isValid)=>{
@@ -42,8 +38,14 @@ const OnePass = ({ navigation,route }) => {
 
     const dispatch = useDispatch();
 
-    let loader;
+    
     const OtpPage = async  ()=>{
+        setLoading(
+            <View style={[styles.row,styles.centerHorizontal]}>
+            <Text style={[styles.fontwhite,fontSize(16)]}>Loading</Text>
+            <LottieView source={require('../../../loader2.json')} style={[styles.fontwhite,{height:30,width:30}]} autoPlay loop/>
+            </View>
+          )
 
         const otpResp = await dispatch(otpVerifyApi(
             {
@@ -101,7 +103,7 @@ const OnePass = ({ navigation,route }) => {
                         styles.centerHorizontal,
                     ]}>
                         <View>
-                            <Buttons text={loader==="fullfilled"? 'Loading': 'go run'}
+                            <Buttons text={loading}
                                 onPress={OtpPage}
                                 style={[
                                     {backgroundColor:buttonColor},

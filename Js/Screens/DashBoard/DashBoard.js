@@ -12,11 +12,17 @@ import { useDispatch,useSelector } from 'react-redux'
 
 const DashBoard = ({ navigation }) => {
 
-    const globalVariableDashboard = useSelector((state)=>state.userDetails.DashBoard)
-    console.log('globalVariableDashboard',globalVariableDashboard);
+const globalVariableDashboard = useSelector((state)=>state)
+console.log('globalVariableDashboard',globalVariableDashboard);
 
-  console.log('loginId',globalVariableDashboard)
+  console.log('loginId',globalVariableDashboard.auth.user.data.CANumber)
+  console.log('meterId',globalVariableDashboard.auth.user.data.MID)
+  console.log('Name',globalVariableDashboard.auth.user.data.Name)
   
+  const loginId = globalVariableDashboard.auth.user.data.CANumber;
+  const meterId = globalVariableDashboard.auth.user.data.MID;
+  const phase = globalVariableDashboard.auth.user.data.PHASE;
+  const Name = globalVariableDashboard.auth.user.data.Name;
     const openDrawer = () => {
         navigation.toggleDrawer();
     }
@@ -26,9 +32,9 @@ const DashBoard = ({ navigation }) => {
     const dashBoardData = async ()=>{
         const dashBoardResp = await dispatch(dashBoardApi(
             {
-                "loginID": "C000003",
-                "meterID": 0,
-                "phase": 0
+                "loginID": loginId,
+                "meterID": meterId,
+                "phase": phase,
               }
         ))
         console.log('dashBoardResp',dashBoardResp);
@@ -53,8 +59,8 @@ const DashBoard = ({ navigation }) => {
                     <View style={[marginPosition(8, 0, 0, 25)]}>
                         <Header
                             Greeting={'Welcome'}
-                            name={'JuliusCeaser'}
-                            ConsumerId={'Consumer ID: C000003'}
+                            name={Name}
+                            ConsumerId={`Consumer ID: ${loginId}`}
                         />
                     </View>
                     <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={[{ width: widthValue(1.05), paddingLeft: 25, marginRight: 10, }, marginPosition(12)]}>

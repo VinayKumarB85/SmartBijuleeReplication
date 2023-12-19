@@ -29,34 +29,28 @@ const FAQ = ({ navigation }) => {
     
     const dispatch = useDispatch();
 
-    
 
-    const faq = async ()=>{
-        try{
+    const faqDetails = async ()=>{
         const faqResp = await dispatch(faqApi(
             {
-                "loginID": "C000003",
+                "loginID": "COOOOO3",
                 "langID": 1
               }
         ))
-        console.log('faqDetails',faqResp)
-            } catch(error){
-                console.error('Error Fetching Faq',error)
-            }
-    //         const loginId = faqResp.meta.arg.loginID;
-    // const languageId = faqResp.meta.arg.langID;
-    // console.log('loginId',loginId)
-    // console.log('languageId',languageId)
+        console.log('faqResp',faqResp)
     }
-
+    
     useEffect(()=>{
-        faq();
+        faqDetails()
     },[])
+
+
+
+
+
     const openDrawer = () => {
         navigation.toggleDrawer();
     };
-
-    const [openIndex, setOpenIndex] = useState()
     const handleShowDetails = (index) => {
         setOpenIndex(openIndex === index ? null : index)
     }
@@ -89,19 +83,52 @@ const FAQ = ({ navigation }) => {
                         <FaqButtons ButtonText={'General'} onPress={() => console.warn('i am General button')} />
                         <FaqButtons ButtonText={'Billing'} onPress={() => console.warn('i am Billing button')} />
                     </View>
-                    <View >
-                        <Text style={[styles.fontwhite, fontSize(17), marginPosition(10, 25, 0, 20)]}>General <Text style={[styles.green, fontSize(17),]}>Category</Text></Text>
-                        <FaqDetailsButton isOpen={openIndex === 0} onPress={() => handleShowDetails(0)} />
-                        <FaqDetailsButton isOpen={openIndex === 1} onPress={() => handleShowDetails(1)} />
-                        <FaqDetailsButton isOpen={openIndex === 2} onPress={() => handleShowDetails(2)} />
-                        <FaqDetailsButton isOpen={openIndex === 3} onPress={() => handleShowDetails(3)} />
-                    </View>
                     <View>
-                        <Text style={[styles.fontwhite, fontSize(17), marginPosition(10, 25, 0, 20)]}>Billing <Text style={[styles.green, fontSize(17),]}>Category</Text></Text>
-                        <FaqDetailsButton isOpen={openIndex === 4} onPress={() => handleShowDetails(4)} />
-                        <FaqDetailsButton isOpen={openIndex === 5} onPress={() => handleShowDetails(5)} />
-                        <FaqDetailsButton isOpen={openIndex === 6} onPress={() => handleShowDetails(6)} />
-                    </View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={[
+          styles.bgbarback,
+          padding(0, 10, 20),
+          {width: widthValue(1.1)},
+          marginPosition(10, 20, 0, 20),
+          radius(0, 15, 0, 0, 15),
+        ]}
+        onPress={handleShowDetails}>
+        <View
+          style={[
+            styles.row,
+            styles.spaceBetweenVertical,
+            styles.centerHorizontal,
+          ]}>
+          <Text style={[styles.fontwhite, fontSize(15)]}>
+             Click me for Details
+          </Text>
+
+          <FontAwesome5
+            name={isOpen ? 'chevron-up' : 'chevron-down'}
+            style={[styles.gr]}
+          />
+        </View>
+      </TouchableOpacity>
+      {isOpen && (
+        <View
+          style={[
+            styles.bgbarback,
+            padding(0, 10, 20),
+            {width: widthValue(1.1)},
+            marginPosition(0, 20, 10, 20),
+            radius(0, 0, 15, 15, 0),
+          ]}>
+          <Text style={[styles.gr]}>
+            this is the details for the click and the details is regarding your
+            quaries and the deatils is the onl;yu solution to yoyur quaries and
+            extra information check for completed details in the useful links
+            se4ction in the app and you can find more and more schemes fdor you
+            which are avaiulabkle for the ben ififgt of your house electricty
+          </Text>
+        </View>
+      )}
+    </View>
                 </ScrollView>
             </SafeAreaView>
         </DrawerScreenWrapper>

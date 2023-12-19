@@ -11,7 +11,7 @@ import { TouchableOpacity } from 'react-native'
 
 const ChangePassword = () => {
   return (
-    <SafeAreaView style={[styles.bglightblack,flex(1),padding(0,20,30)]}>
+    <SafeAreaView style={[styles.bglightblack,flex(1),]}>
       <BackButton />
       <View style={[marginPosition(40,25,20,25),{width:widthValue(1.12),height:heightValue(1.3),gap:20}]}>
     <View style={[styles.bgbarback,{width:widthValue(1.12),height:heightValue(4.7),},radius(20),styles.centerHorizontal]}>
