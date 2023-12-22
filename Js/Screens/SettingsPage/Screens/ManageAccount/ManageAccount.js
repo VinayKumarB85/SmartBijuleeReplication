@@ -1,5 +1,5 @@
 import {View, Text, SafeAreaView,TextInput} from 'react-native';
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {
   styles,
   flex,
@@ -22,7 +22,23 @@ import AddAccount from '../../../../Components/AddAccount/AddAccount';
 
 const ManageAccount = () => {
 
-  const [showConsumer,setShowConsumer] = useState(false)
+  const [showConsumer, setShowConsumer] = useState(false);
+  const [consumerId, setConsumerId] = useState('');
+  const [buttonColor, setButtonColor] = useState(styles.bggreyish);
+
+  useEffect(() => {
+    const checkId = () => {
+      const trimmedConsumerId = consumerId.trim();
+      if (trimmedConsumerId === '') {
+        setButtonColor(styles.bggreyish);
+        console.log('hi');
+      } else {
+        setButtonColor(styles.bggreen);
+      }
+    };
+
+    checkId();
+  }, [consumerId]);
   const goToNextPage = ()=>{
     setShowConsumer(true)
   }
@@ -40,16 +56,11 @@ const ManageAccount = () => {
         />
       </View>
       {!showConsumer && (
-      <View style={[styles.bggreenish,{width:widthValue(9),height:widthValue(9)},radius(widthValue(4.5)),styles.allCenter,styles.positionAbsolute,{top:heightValue(4.1),zIndex:99,right:0}]}>
+      <View style={[styles.bggreenish,{width:widthValue(9),height:widthValue(9)},radius(widthValue(4.5)),styles.allCenter,styles.positionAbsolute,{top:155,zIndex:99,right:0}]}>
          <TouchableWithoutFeedback onPress={goToNextPage} ><FontAwesome5 name='plus' style={[styles.fontwhite,fontSize(18)]}/></TouchableWithoutFeedback>
       </View> )}
 
-      {/* {showConsumer && ( 
-        <AddAccount />
-        
-      )}
-      <ConsumerBox /> */}
-      {showConsumer ? <ConsumerBox/> : <AddAccount/> }
+      {showConsumer ? <ConsumerBox onChangeText={(value)=>setConsumerId(value)} buttonColor={buttonColor} /> : <AddAccount/> }
       
 
 

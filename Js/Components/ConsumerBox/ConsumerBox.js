@@ -13,9 +13,20 @@ import {
   fontSize,
 } from '../../Utils/Styles';
 
-const ConsumerBox = () => {
+const ConsumerBox = ({onChangeText,consumerId,setConsumerId,buttonColor}) => {
   const [isCustomerIdFocused, setIsCustomerIdFocused] = useState(false);
 
+  // const checkId = ()=>{
+
+  //   const InputText = consumerId.trim();
+  //   if(InputText === ''){
+  //     setButtonColor(styles.bggreyish)
+  //     console.log('hi')
+  //   } else {
+  //     setButtonColor(styles.bggreen)
+  //   }
+  // }
+  // checkId()
   const handleCustomerFocus = () => {
     setIsCustomerIdFocused(true);
   };
@@ -84,6 +95,7 @@ const ConsumerBox = () => {
                   styles.fontwhite,
                   styles.borderGreen,
                 ]}
+                onChangeText={onChangeText}
                 onFocus={handleCustomerFocus}
                 onBlur={() => setIsCustomerIdFocused(false)}></TextInput>
             </View>
@@ -91,7 +103,7 @@ const ConsumerBox = () => {
         </View>
       </View>
       <View style={[styles.centerHorizontal,marginPosition(40)]}>
-      <TouchableOpacity style={[styles.bggreyish,{width:widthValue(2.5)},styles.allCenter,padding(0,10,20),radius(30)]}>
+      <TouchableOpacity style={[buttonColor,{width:widthValue(2.5)},styles.allCenter,padding(0,10,20),radius(30)]}>
         <Text style={[styles.fontwhite,fontSize(15)]}>Generate OTP</Text>
         
       </TouchableOpacity>

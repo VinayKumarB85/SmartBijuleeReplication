@@ -34,8 +34,8 @@ const History = ({ navigation }) => {
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, paddingPosition(30), styles.bglightblack]}>
-                <View style={[marginPosition(30, 0, 0, 25)]}>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), }, styles.bglightblack]}>
+                <View style={[marginPosition(20, 0, 0, 25)]}>
                     <TouchableOpacity
                         onPress={openDrawer}
                     >

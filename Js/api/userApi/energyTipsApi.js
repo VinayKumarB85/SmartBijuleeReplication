@@ -10,10 +10,11 @@ export const energyTipsApi = createAsyncThunk(energyTipsEndPoint,
             method: "post",
             url: energyTipsEndPoint,
             data: {
-                ...requestData
-            }
+                "loginID":getState().auth.user.data.CANumber,
+                "langID":getState().auth.user.data.LangID,
+              }
         };
-        console.log('request',request,requestData)
+        console.log('requeaesdfghfhfgdfdst',getState().auth.user.data)
         try {
             const res = await dispatch(ApiManager(getState().auth, request))
             return fulfillWithValue(res)

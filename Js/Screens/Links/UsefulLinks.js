@@ -63,7 +63,7 @@ const UsefulLinks = ({ navigation }) => {
             <SafeAreaView
                 style={[
                     flex(1),
-                    { width: widthValue(1), paddingTop: heightValue(30) },
+                    { width: widthValue(1) },
                     styles.bglightblack,
                 ]}>
                 <View style={[marginPosition(20, 20, 0, 25)]}>
@@ -84,7 +84,7 @@ const UsefulLinks = ({ navigation }) => {
                         </View>
                     </View>
                     <View style={[styles.centerHorizontal]} >
-                <View style={[styles.bgbarback,{width:widthValue(1.15)},marginPosition(0,0,0,25),radius(30),padding(0,10,20),styles.selfStart,styles.row,{gap:10}]}>
+                <View style={[styles.bgbarback,{width:widthValue(1.15)},marginPosition(0,0,0,25),radius(30),padding(0,10,20),styles.selfStart,styles.row,styles.centerHorizontal,{gap:10}]}>
                     <FontAwesome5 name='search' style={[fontSize(20),styles.fontwhite]} />
                     <TextInput   placeholder='Search' placeholderTextColor={'white'} style={[styles.fontwhite]} onChangeText={(value)=>{if(value === Shortname){
                         console.log(Shortname)

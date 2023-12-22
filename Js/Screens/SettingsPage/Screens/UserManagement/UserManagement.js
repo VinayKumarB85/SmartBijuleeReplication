@@ -42,7 +42,7 @@ const UserManagement = () => {
       {showConsumer ? <DetailsScreen1 /> :<AddAccount /> }
 
 {showConsumer ? '':
- <View style={[styles.bggreenish,{width:widthValue(8),height:widthValue(8)},radius(widthValue(4)),styles.allCenter,styles.positionAbsolute,{top:heightValue(4.1),zIndex:99,right:0}]}>
+ <View style={[styles.bggreenish,{width:widthValue(8),height:widthValue(8)},radius(widthValue(4)),styles.allCenter,styles.positionAbsolute,{top:155,zIndex:99,right:0}]}>
  <TouchableOpacity onPress={goToNextPage}><FontAwesome5 name='plus' style={[styles.fontwhite,fontSize(20)]}/></TouchableOpacity></View> }
     </SafeAreaView>
   );

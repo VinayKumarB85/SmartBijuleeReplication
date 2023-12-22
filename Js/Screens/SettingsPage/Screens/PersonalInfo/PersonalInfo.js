@@ -72,7 +72,7 @@ const loginId = globalVariablePersonalInfo.auth.user.data.CANumber;
   return (
     <SafeAreaView style={[styles.bglightblack,flex(1),]}>
       <BackButton />
-      <View style={[marginPosition(25,25,20,25),{width:widthValue(1.12),height:heightValue(1.3),gap:20},]}>
+      <View style={[marginPosition(25,25,20,25),{width:widthValue(1.12),height:heightValue(1.3),gap:30},styles.spaceBetween]}>
      
       <View style={[styles.bgbarback,{width:widthValue(1.12),height:heightValue(4.7),},radius(20),styles.centerHorizontal,styles.positionRelative]}>
         <View style={[marginPosition(-40),styles.centerHorizontal]}>
@@ -82,8 +82,8 @@ const loginId = globalVariablePersonalInfo.auth.user.data.CANumber;
           : <Image source={require('../../../../../assets/LoginLogo2.png')} style={[{width:widthValue(3),height:widthValue(3)}]} />}
           </TouchableWithoutFeedback>
           <View style={[styles.centerHorizontal,marginPosition(5)]}>
-            <Text style={[styles.fontwhite,fontSize(15)]}>{details.fullName}</Text>
-            <Text style={[styles.green,fontSize(11)]}>{`Consumer ID:${details.loginID}`}</Text>
+            <Text style={[styles.fontwhite,fontSize(16)]}>{details.fullName}</Text>
+            <Text style={[styles.green,fontSize(13)]}>{`Consumer ID:${details.loginID}`}</Text>
           </View>
         </View>
     </View>

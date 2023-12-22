@@ -32,13 +32,13 @@ const FirstPage = () => {
             </View>
             <View style={[styles.row, styles.spaceAroundVertical]}>
               <TouchableOpacity onPress={() => handleIconPress('frown')}>
-                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcon === 'frown' ? '#0e804f' : styles.green.color }]} size={70} />
+                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcon === 'frown' ? '#0e804f' : styles.green.color }]} size={selectedIcon === 'frown' ? 80 :70} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('meh')}>
-                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcon === 'meh' ? '#0e804f' : styles.green.color }]} size={70} />
+                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcon === 'meh' ? '#0e804f' : styles.green.color }]}size={selectedIcon === 'meh' ? 80 :70} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('smile')}>
-                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcon === 'smile' ? '#0e804f' : styles.green.color }]} size={70} />
+                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcon === 'smile' ? '#0e804f' : styles.green.color }]}size={selectedIcon === 'smile' ? 80 :70} />
               </TouchableOpacity>
             </View>
             

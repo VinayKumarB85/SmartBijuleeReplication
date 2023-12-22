@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { energyTipsApi } from '../../api/userApi/energyTipsApi';
+ import {resetPasswordApi} from '../../api/userApi/resetPasswordApi' 
 
 
-export const energytipsReducer = createSlice({
-    name: "energytipsReducer",
+export const resetPasswordReducer = createSlice({
+    name: "resetPasswordReducer",
     initialState: {
         loading: false,
         error: null,
@@ -12,16 +12,16 @@ export const energytipsReducer = createSlice({
     },
     extraReducers: builder => {
         builder
-            .addCase(energyTipsApi.pending, (state) => {
+            .addCase(resetPasswordApi.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(energyTipsApi.fulfilled, (state, action) => {
+            .addCase(resetPasswordApi.fulfilled, (state, action) => {
                 state.loading = false;
                 state.data = action.payload.data;
                 state.status = action.payload.status
                 state.error = '';
             })
-            .addCase(energyTipsApi.rejected, (state, action) => {
+            .addCase(resetPasswordApi.rejected, (state, action) => {
                 console.log('action',action)
                 state.data = "";
                 state.loading = false;

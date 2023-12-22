@@ -31,10 +31,6 @@ const DetailsScreen1 = ({}) => {
     }
   };
 
-//   const validatePhoneNumber = () => {
-//     const checkNumber = val.length === 10;
-//     setIsValid(checkNumber);
-//   };
   return (
     <View>
       <View style={[{gap: 25}]}>
@@ -71,7 +67,7 @@ const DetailsScreen1 = ({}) => {
             styles.allCenter,
           ]}
           onPress={handleBackPage}>
-          <Text style={[styles.fontwhite, padding(0, 10, 30)]}>Back{dropdownvalue}</Text>
+          <Text style={[styles.fontwhite, padding(0, 10, 30)]}>Back</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[

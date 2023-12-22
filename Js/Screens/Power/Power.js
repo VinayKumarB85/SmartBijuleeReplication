@@ -16,8 +16,8 @@ const Power = ({ navigation }) => {
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, paddingPosition(30), styles.bglightblack]}>
-                <View style={[marginPosition(10, 0, 0, 25)]}>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), },paddingPosition(0,0,0,) ,styles.bglightblack]}>
+                <View style={[marginPosition(20, 0, 0, 30)]}>
                     <TouchableOpacity
                         onPress={openDrawer}
                     >
@@ -27,17 +27,17 @@ const Power = ({ navigation }) => {
                         />
                     </TouchableOpacity>
                 </View>
-                <ScrollView  style={[marginPosition(0,20,0,15)]}>
+                <ScrollView  style={[marginPosition(0,20,0,20)]}>
                     <View style={[marginPosition(10)]}>
                         <Header2
                             title1={'Power'}
                             title2={' Quality'}
                             Desc={'How is the quality of the power that you are receiving ?'} />
                     </View>
-                    <View style={[marginPosition(20)]}>
+                    <View style={[marginPosition(20,20,0,)]}>
                         <VoltageComponent/>
                     </View>
-                    <View style={[marginPosition(20,0,0,0),{width:widthValue(1.15),height:heightValue(2.3)},styles.bgbarback,radius(0,15,0,0,15),padding(0,20,20)]}>
+                    <View style={[marginPosition(20,0,0,0),{width:widthValue(1.12),height:heightValue(2.3)},styles.bgbarback,radius(0,15,0,0,15),padding(0,20,20)]}>
                         <View>
                         <Text style={[styles.fontwhite,fontSize(15)]}>Voltage<Text style={[styles.green]}> Hourly Trend</Text></Text>
                         <VoltageHour/>

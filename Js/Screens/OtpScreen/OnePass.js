@@ -38,7 +38,6 @@ const OnePass = ({ navigation,route }) => {
 
     const dispatch = useDispatch();
 
-    
     const OtpPage = async  ()=>{
         setLoading(
             <View style={[styles.row,styles.centerHorizontal]}>
@@ -67,7 +66,6 @@ const OnePass = ({ navigation,route }) => {
         }
     }
     
-        
     const loginPage = () => {
         navigation.navigate('Login')
     }
@@ -94,7 +92,6 @@ const OnePass = ({ navigation,route }) => {
                     </TouchableOpacity>   
                     <OtpBox customerNumber={customerNumber} updateButtonColor={updateButtonColor} onChangeOtp={(otp)=>{setEnteredOtp(otp),updateButtonColor(otp)}}/> 
                     
-                
                     <View style={[{width:widthValue(1.4)}]}>
             <Text style={[styles.red,,styles.textCenter,fontSize(14),marginPosition(0,0,20)]}>{otpError}</Text>
           </View>
@@ -107,12 +104,12 @@ const OnePass = ({ navigation,route }) => {
                                 onPress={OtpPage}
                                 style={[
                                     {backgroundColor:buttonColor},
-                                    padding(0, 12, 30),
+                                    padding(0, 15, 25),
                                     radius(50),
                                     { width: widthValue(2.6) },
                                     styles.allCenter
                                 ]}
-                                textStyle={[fontSize(22), styles.fontwhite]} />
+                                textStyle={[fontSize(18), styles.fontwhite]} />
                         </View>
                     </View >
                 </SafeAreaView >

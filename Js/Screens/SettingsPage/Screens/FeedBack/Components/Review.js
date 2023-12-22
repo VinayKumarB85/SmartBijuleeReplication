@@ -88,43 +88,43 @@ return (
           
             <View style={[styles.row,styles.spaceBetweenVertical,styles.centerHorizontal,marginPosition(10,20,10,20),borderWidth(0,1),styles.borderGreen,paddingPosition(15,0)]}>
             <Text style={[styles.fontwhite]}>Clarity of Info</Text>
-            <View style={[styles.row, styles.spaceBetweenVertical,{gap:5}]}>
+            <View style={[styles.row, styles.spaceBetweenVertical,{gap:12}]}>
               <TouchableOpacity onPress={() => handleIconPress('section1','frown')}>
-                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section1 === 'frown' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section1 === 'frown' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section1 === 'frown' ? 45 :40} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section1','meh')}>
-                <FontAwesome5 name={'meh'} style={[styles.green, { color:selectedIcons.section1  === 'meh' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'meh'} style={[styles.green, { color:selectedIcons.section1  === 'meh' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section1 === 'meh' ? 45 :40} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section1','smile')}>
-                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section1 === 'smile' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section1 === 'smile' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section1 === 'smile' ? 45 :40} />
               </TouchableOpacity>
             </View>
             </View>
             <View style={[styles.row,styles.spaceBetweenVertical,styles.centerHorizontal,marginPosition(10,20,10,20)]}>
             <Text style={[styles.fontwhite]}>Ease of Navigation</Text>
-            <View style={[styles.row, styles.spaceBetweenVertical,{gap:5}]}>
+            <View style={[styles.row, styles.spaceBetweenVertical,{gap:12}]}>
               <TouchableOpacity onPress={() => handleIconPress('section2','frown')}>
-                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section2 === 'frown' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section2 === 'frown' ? '#0e804f' : styles.green.color }]}size={selectedIcons.section2 === 'frown' ? 45 :40} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section2','meh')}>
-                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcons.section2 === 'meh' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcons.section2 === 'meh' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section2 === 'meh' ? 45 :40} />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section2','smile')}>
-                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section2 === 'smile' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section2 === 'smile' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section2 === 'smile' ? 45 :40}/>
               </TouchableOpacity>
             </View>
             </View>
             <View style={[styles.row,styles.spaceBetweenVertical,styles.centerHorizontal,marginPosition(10,20,30,20)]}>
             <Text style={[styles.fontwhite]}>Overall look & feel</Text>
-            <View style={[styles.row, styles.spaceBetweenVertical,{gap:5}]}>
+            <View style={[styles.row, styles.spaceBetweenVertical,{gap:15}]}>
               <TouchableOpacity onPress={() => handleIconPress('section3','frown')}>
-                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section3 === 'frown' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'frown'} style={[styles.green, { color: selectedIcons.section3 === 'frown' ? '#0e804f' : styles.green.color }]}size={selectedIcons.section3 === 'frown' ? 45 :40}/>
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section3','meh')}>
-                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcons.section3 === 'meh' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'meh'} style={[styles.green, { color: selectedIcons.section3 === 'meh' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section3 === 'meh' ? 45 :40}  />
               </TouchableOpacity>
               <TouchableOpacity onPress={() => handleIconPress('section3','smile')}>
-                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section3 === 'smile' ? '#0e804f' : styles.green.color }]} size={40} />
+                <FontAwesome5 name={'smile'} style={[styles.green, { color: selectedIcons.section3 === 'smile' ? '#0e804f' : styles.green.color }]} size={selectedIcons.section3 === 'smile' ? 45 :40} />
               </TouchableOpacity>
             </View>
             </View>

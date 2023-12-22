@@ -11,8 +11,8 @@ const Billing = ({ navigation }) => {
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), paddingTop: heightValue(30) }, styles.bglightblack]}>
-                <View style={[marginPosition(30, 0, 10, 25)]}>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), }, styles.bglightblack]}>
+                <View style={[marginPosition(20, 0, 10, 25)]}>
                     <TouchableOpacity
                         onPress={openDrawer}
                     >

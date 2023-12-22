@@ -51,10 +51,10 @@ const CalendarPage = () => {
   };
 
   return (
-    <View style={[marginPosition(10, 20, 10, 15)]}>
+    <View style={[marginPosition(10, 20, 10, 20)]}>
       <View>
         <View style={[marginPosition(10,0,10,0),styles.row]}>
-        <Text style={[styles.red,fontSize(1)]}> Start</Text><Text style={[styles.green,fontSize(16)]}>Date</Text></View>
+        <Text style={[styles.fontwhite,fontSize(16.5)]}>Start</Text><Text style={[styles.green,fontSize(16.5)]}> Date</Text></View>
         {showCalendar ? (
           <View style={[styles.allCenter, styles.row]}>
             <View style={[{ height: 250, backgroundColor: "#29292e", width: widthValue(10) }, styles.allCenter, padding(0, 0, 0, 20)]}>
@@ -153,3 +153,5 @@ const CalendarPage = () => {
 };
 
 export default CalendarPage;
+
+

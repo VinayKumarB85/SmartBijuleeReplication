@@ -147,7 +147,7 @@ const DrawerApp = () => {
                   <Text style={[fontSize(13), styles.gr]}>Are you sure you want to logout ?</Text>
                 </View>
                 <View style={[styles.row, styles.centerHorizontal, styles.spaceBetweenVertical, marginPosition(20, 0, 0, 0)]}>
-                  <TouchableOpacity onPress={closeModal} style={[padding(0, 18, 70), borderWidth(1), radius(10), styles.allCenter]}>
+                  <TouchableOpacity onPress={closeModal} style={[padding(0, 18, 60), borderWidth(1), radius(10), styles.allCenter]}>
                     <Text style={styles.black}>No</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -155,7 +155,7 @@ const DrawerApp = () => {
                       navigation.navigate('Login');
                       closeModal();
                     }}
-                    style={[styles.bglightgreen, padding(0, 20, 70), radius(10), styles.allCenter]}
+                    style={[styles.bglightgreen, padding(0, 20, 60), radius(10), styles.allCenter]}
                   >
                     <Text style={styles.fontwhite}>Yes</Text>
                   </TouchableOpacity>
@@ -192,15 +192,20 @@ const DrawerApp = () => {
         <Drawer.Screen key={index} name={item.name} component={item.component} />
         
       ))}
-      <Drawer.Screen name="Comparison" component={Comparison}  
-      options={{
-drawerStyle:{
-  borderTopWidth:0.8,
-  borderColor:'grey'
-}
-      }
-        
-      }/>
+      <Drawer.Screen
+  name="Comparison"
+  component={Comparison}
+  options={{
+    headerShown: false,
+    drawerStyle: {
+      backgroundColor: '#282f42',
+    },
+    drawerItemStyle: {
+      borderTopWidth: 0.8,
+      borderColor: 'grey',
+    },
+  }}
+/>
       <Drawer.Screen  name="History" component={History} />
     </Drawer.Navigator>
   );

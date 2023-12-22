@@ -1,13 +1,14 @@
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiManager } from '../ApiManager';
-import { faqEndPoint } from '../../Constants/Apiurl';
+import { resetPasswordEndPoint } from '../../Constants/Apiurl';
 
 
-export const faqApi = createAsyncThunk(faqEndPoint,
+export const resetPasswordApi = createAsyncThunk(resetPasswordEndPoint,
     async (requestData, { getState, fulfillWithValue, rejectWithValue, dispatch }) => {
         const request = {
             method: "post",
-            url: faqEndPoint,
+            url: resetPasswordEndPoint,
             data: {
                 ...requestData
             }

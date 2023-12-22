@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import EnergyTipsComponent from '../../Components/EnergyTipsComponent/EnergyTipsComponent';
 import DrawerScreenWrapper from '../Drawer Nav/Drawers/DrawerScreenWrapper';
@@ -20,16 +20,14 @@ import { useDispatch ,useSelector} from 'react-redux';
 import { energyTipsApi } from '../../api/userApi/energyTipsApi';
 
 const EnergyTips = ({ navigation }) => {
-    const globalVariableEnergyTips = useSelector(state => state);
+    const globalVariableEnergyTips = useSelector(state => state.auth.user.data);
     console.log('globalVariableEnergyTips', globalVariableEnergyTips);
     const userSelector = useSelector(state => state.auth.userVerify);
     console.log(userSelector);
     const [energyTipsData,setEnergyTipsData] = useState([])
-    const [loginId,setLoginId] = useState('');
-    const [langId,setLangId] = useState('');
+    // const [loginId,setLoginId] = useState('');
+    // const [langId,setLangId] = useState('');
 
-    const LoginId = globalVariableEnergyTips.auth.user.data.CANumber;
-    const LangId = globalVariableEnergyTips.auth.user.data.LangID;
     
     const openDrawer = () => {
         navigation.toggleDrawer();
@@ -42,8 +40,8 @@ const EnergyTips = ({ navigation }) => {
             
         const energyTipsResp =  await dispatch(energyTipsApi(
             {
-                "loginID":LoginId,
-                "langID":LangId,
+                "loginID":globalVariableEnergyTips.CANumber,
+                "langID":globalVariableEnergyTips.LangID,
               }
         ))
         console.log('EnergyTips',energyTipsResp)
@@ -61,11 +59,10 @@ const EnergyTips = ({ navigation }) => {
     
     return (
         <DrawerScreenWrapper>
-            <View
+            <SafeAreaView
                 style={[
                     flex(1),
                     { width: widthValue(1) },
-                    paddingPosition(30),
                     styles.bglightblack,
                 ]}>
                 <View style={[marginPosition(20, 0, 0, 30)]}>
@@ -115,7 +112,7 @@ const EnergyTips = ({ navigation }) => {
   ))}
                     </View>
                 </ScrollView>
-            </View>
+            </SafeAreaView>
         </DrawerScreenWrapper>
     );
 };

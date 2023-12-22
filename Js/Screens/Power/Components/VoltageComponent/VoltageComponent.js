@@ -26,7 +26,7 @@ const VoltageComponent = () => {
       style={[
         styles.bgbarback,
         radius(15),
-        {width: widthValue(1.15), height: heightValue(7)},
+        {width: widthValue(1.12), height: heightValue(7)},
         padding(0, 10, 20),
         styles.spaceBetweenVertical,
         styles.row,

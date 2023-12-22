@@ -16,7 +16,7 @@ import {
     fonting
 } from '../../../Utils/Styles';
 
-const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
+const ResetOtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
     // console.log(route.params.data.MobileNumber)
 
     const [isCustomerIdFocused, setIsCustomerIdFocused] = useState(false);
@@ -32,14 +32,14 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
 
     }
 
+    const handlePasswordFocus = () => {
+        setIsPasswordFocused(true);
+    };
     const transformMobileNumber = (number) => {
         const hiddenPart = 'X'.repeat(number.length - 2);
         const visiblePart = number.slice(-2);
         return hiddenPart + visiblePart;
       };
-    const handlePasswordFocus = () => {
-        setIsPasswordFocused(true);
-    };
 
   return (
     <View>
@@ -91,7 +91,7 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                                         MOBILE NUMBER
                                     </Text>
                                     <TextInput
-                                    value={transformMobileNumber(customerNumber)}
+                                   
                                         style={[
                                             { borderBottomWidth: 1, },
                                             styles.borderGreen,
@@ -100,6 +100,7 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                                             styles.white,
                                             { padding: 0, paddingTop: 10 }
                                         ]}
+                                        value={transformMobileNumber(customerNumber)}
                                     />
                                 </View>
                                 <View
@@ -119,6 +120,7 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                                             fontSize(20),
                                             { padding: 0, paddingTop: heightValue(80) }
                                         ]}
+                                    
                                         onChangeText={onChangeOtp}
                                         onFocus={handlePasswordFocus}
                                         onBlur={() => setIsPasswordFocused(false)}
@@ -131,4 +133,4 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
   )
 }
 
-export default OtpBox
+export default ResetOtpBox

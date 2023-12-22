@@ -15,8 +15,8 @@ const MDI = ({ navigation }) => {
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, paddingPosition(30), styles.bglightblack,]}>
-                <View style={[marginPosition(30, 0, 0, 25)]}>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), },  styles.bglightblack,]}>
+                <View style={[marginPosition(20, 0, 0, 25)]}>
                     <TouchableOpacity
                         onPress={openDrawer}
                     >
@@ -50,7 +50,7 @@ const MDI = ({ navigation }) => {
                     </View>
                     <View style={[styles.centerHorizontal, marginPosition(15,),]}>
                         <TouchableOpacity style={[{ width: widthValue(1.6) }, styles.centerHorizontal, styles.bggreen, paddingPosition(5, 0, 5, 0), radius(30)]}>
-                            <Text style={[styles.fontwhite, fontSize(10)]}>(Click here to view Current Month's MDI Chart)</Text>
+                            <Text style={[styles.fontwhite, fontSize(9.5)]}>(Click here to view Current Month's MDI Chart)</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={[marginPosition(20, 20, 30, 20), styles.bgbarback, radius(18), screenHeight(5.8), padding(0, 20, 10)]}>

@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {
   styles,
   fontSize,
@@ -50,11 +50,13 @@ const Login = ({navigation}) => {
   // };
   const forgotPage = () => {
     navigation.navigate('Forgot');
+    // console.warn('hi hello')
   };
 
   const createPage = () => {
     navigation.navigate('Create');
   };
+
 
   const login = async () => {
     setLoader(
@@ -92,6 +94,8 @@ const Login = ({navigation}) => {
         Id: loginId,
       });
       setLoginError('');
+      setLoader('Sent Otp')
+      setButtonColor('#262f40')
       console.log(CustomerDetails);
       console.log('loginId', loginId);
     }
@@ -128,7 +132,10 @@ const Login = ({navigation}) => {
               navigation.navigate('OnePass',{
                 data: CMobileNum,
                 Id: CLoginId,
+                
               });
+              setLoader('Sent Otp')
+              setButtonColor('#262f40')
             },
           },
         ],
@@ -185,7 +192,7 @@ const Login = ({navigation}) => {
               {
                 width: widthValue(2.6),
               },
-              padding(0, 10, 30),
+              padding(0, 15, 30),
               marginPosition(20),
               styles.allCenter,
               radius(40),
@@ -193,19 +200,19 @@ const Login = ({navigation}) => {
             onPress={login}
             // onPress={otpPage}
           >
-            <Text style={[fontSize(16), styles.fontwhite]}>{loader}</Text>
+            <Text style={[fontSize(17), styles.fontwhite]}>{loader}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[marginPosition(15)]} onPress={forgotPage}>
-            <Text style={[fontSize(16), styles.fontwhite]}>
+            <Text style={[fontSize(17), styles.fontwhite]}>
               Forgot Password ?
             </Text>
           </TouchableOpacity>
-          <View style={[marginPosition(30), styles.row]}>
-            <Text style={[fontSize(16), styles.fontwhite]}>
+          <View style={[marginPosition(20), styles.row]}>
+            <Text style={[fontSize(17), styles.fontwhite]}>
               Don't have an account ?
             </Text>
             <TouchableOpacity onPress={createPage}>
-              <Text style={[fontSize(16), styles.green]}>Sign Up</Text>
+              <Text style={[fontSize(17), styles.green]}> Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>

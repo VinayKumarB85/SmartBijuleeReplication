@@ -46,7 +46,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
             <View
               style={[
                 styles.bggreen,
-                {height:50, width:245},
+                {height:50, width:widthValue(1.65)},
                 marginPosition(-38),
                 radius(20),
               ]}></View>
@@ -86,7 +86,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                   ]}>
                   <Text
                     style={[
-                      isCustomerIdFocused ? fontSize(10) : fontSize(12),
+                      isCustomerIdFocused ? fontSize(11.5) : fontSize(12.5),
                       styles.lightGray,
                     ]}>
                     CUSTOMER ID/MOBILE NUMBER
@@ -100,7 +100,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                         borderBottomWidth: 1,
                         paddingVertical: 0,
                       },
-                      fontSize(18),
+                      fontSize(19),
                       styles.fontwhite,
                       styles.borderGreen,
                     ]}
@@ -128,7 +128,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                     ]}>
                     <Text
                       style={[
-                        isPasswordFocused ? fontSize(10) : fontSize(12),
+                        isPasswordFocused ? fontSize(11.5) : fontSize(12.5),
                         styles.lightGray,
                       ]}>
                       PASSWORD
@@ -142,10 +142,10 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                       <TextInput
                         style={[
                           {
-                            height: heightValue(20),
+                            height: heightValue(18),
                             width: widthValue(2.2),
                           },
-                          fontSize(16),
+                          fontSize(19),
                           styles.fontwhite,
                         ]}
                         value={pass}

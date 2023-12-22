@@ -27,7 +27,7 @@ const Notification = ({ navigation }) => {
             <SafeAreaView
                 style={[
                     flex(1),
-                    { width: widthValue(1), paddingTop: heightValue(30) },
+                    { width: widthValue(1), },
                     styles.bglightblack,
                 ]}>
                 <View style={[marginPosition(20, 20, 0, 25)]}>
@@ -39,7 +39,7 @@ const Notification = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
-                    <View style={[marginPosition(-30, 0, 20, 15)]}>
+                    <View style={[marginPosition(10, 0, 20, 15)]}>
                         <Header2
                             title1={'Be'}
                             title2={' Notified'}

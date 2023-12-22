@@ -27,7 +27,7 @@ const SettingsCard = ({navigation}) => {
           {width: widthValue(1.1), height: heightValue(12)},
           styles.bgbarback,
           styles.centerHorizontal,
-          padding(0, 10, 20),
+          padding(0, 15, 20),
           radius(15),
           marginPosition(0,0,20,0)
         ]}>
@@ -44,12 +44,12 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(14)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(13)]}>{card.details}</Text>
+      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
   </View>
       </View>
     </View>
-    <FontAwesome5 name={'chevron-right'} size={14} color={'grey'} />
+    <FontAwesome5 name={'chevron-right'} size={16} color={'grey'} />
     </TouchableWithoutFeedback>
     </View>
     ))
@@ -81,8 +81,8 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(14)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(13)]}>{card.details}</Text>
+      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
   </View>
       </View>
     </View>
@@ -102,7 +102,7 @@ const SettingsCard = ({navigation}) => {
           {width: widthValue(1.1), height: heightValue(12)},
           styles.bgbarback,
           styles.centerHorizontal,
-          padding(0, 5, 20),
+          padding(0, 15, 20),
           radius(15),
           marginPosition(0,0,20,0)
         ]}>
@@ -118,8 +118,8 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(14)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(13)]}>{card.details}</Text>
+      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
   </View>
       </View>
     </View>

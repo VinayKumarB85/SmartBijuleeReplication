@@ -1,6 +1,5 @@
-import { View, Text } from 'react-native'
+
 import React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import Home from '../OnBoarding/Home'
 import Login from '../Login/Login'
@@ -10,7 +9,6 @@ import Create from '../ConsumerId/Create'
 import NewAccount from '../NewAccount/NewAccount'
 import Splash from '../Logo/Splash';
 import DrawerApp from '../Drawer Nav/DrawerApp'
-import DashBoard from '../DashBoard/DashBoard'
 import PersonalInfo from '../SettingsPage/Screens/PersonalInfo/PersonalInfo'
 import ManageAccount from '../SettingsPage/Screens/ManageAccount/ManageAccount'
 import ChangePassword from '../SettingsPage/Screens/ChangePassword/ChangePassword'
@@ -20,11 +18,8 @@ import UserManagement from '../SettingsPage/Screens/UserManagement/UserManagemen
 import RateOurApp from '../SettingsPage/Screens/RateOurApp/RateOurApp'
 import FeedBack from '../SettingsPage/Screens/FeedBack/FeedBack'
 import Terms from '../SettingsPage/Screens/Terms/Terms'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import {styles} from '../../Utils/Styles'
-import Comparison from '../Consumption/Comparison/Comparison'
-import History from '../Consumption/History/History'
-import Image from '../../Components/Image'
+import ResetOtp from '../Forgot/ResetOtp/ResetOtp'
+import ResetPass from '../Forgot/ResetPass/ResetPass'
 
 const Stack = createStackNavigator();
 
@@ -87,8 +82,13 @@ const StackNavigator = () => {
                 name={'Terms'}
                 component={Terms} />
             <Stack.Screen
-                name={'Image'}
-                component={Image} />
+                name={'ResetOtp'}
+                component={ResetOtp} />
+            <Stack.Screen
+                name={'ResetPass'}
+                component={ResetPass} />
+            
+            
             
         </Stack.Navigator>
     )
