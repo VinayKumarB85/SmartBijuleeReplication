@@ -8,8 +8,13 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { useDispatch,useSelector } from 'react-redux'
 import { personalInfoApi } from '../../../../api/userApi/personalInfoApi'
+import { getSupportedMediaTypeListSync } from 'react-native-device-info'
+
 
 const PersonalInfo = () => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
 
   const [details,setDetails]= useState('')
   const [selectedImage,setSelectedImage] = useState(null)
@@ -70,11 +75,11 @@ const loginId = globalVariablePersonalInfo.auth.user.data.CANumber;
   },[])
   console.log('load',details.contactNumber)
   return (
-    <SafeAreaView style={[styles.bglightblack,flex(1),]}>
+    <SafeAreaView style={[darkmode?styles.bglightblack:styles.bgLightWhite,flex(1),]}>
       <BackButton />
-      <View style={[marginPosition(25,25,20,25),{width:widthValue(1.12),height:heightValue(1.3),gap:30},styles.spaceBetween]}>
+      <View style={[marginPosition(25,25,20,25),{width:widthValue(1.12),height:heightValue(1.3),gap:20},styles.spaceBetween]}>
      
-      <View style={[styles.bgbarback,{width:widthValue(1.12),height:heightValue(4.7),},radius(20),styles.centerHorizontal,styles.positionRelative]}>
+      <View style={[darkmode?styles.bgbarback:styles.bgWhite,{width:widthValue(1.12),height:heightValue(4.7),},radius(20),styles.centerHorizontal,styles.positionRelative]}>
         <View style={[marginPosition(-40),styles.centerHorizontal]}>
           <TouchableWithoutFeedback onPress={ImageSelect} style={[{width:widthValue(3),height:widthValue(3)},radius(widthValue(1.5),styles.bgWhite)]} >
             {show? 
@@ -82,7 +87,7 @@ const loginId = globalVariablePersonalInfo.auth.user.data.CANumber;
           : <Image source={require('../../../../../assets/LoginLogo2.png')} style={[{width:widthValue(3),height:widthValue(3)}]} />}
           </TouchableWithoutFeedback>
           <View style={[styles.centerHorizontal,marginPosition(5)]}>
-            <Text style={[styles.fontwhite,fontSize(16)]}>{details.fullName}</Text>
+            <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(17)]}>{details.fullName}</Text>
             <Text style={[styles.green,fontSize(13)]}>{`Consumer ID:${details.loginID}`}</Text>
           </View>
         </View>
@@ -91,7 +96,7 @@ const loginId = globalVariablePersonalInfo.auth.user.data.CANumber;
         
         <TouchableWithoutFeedback onPress={ImageSelect}><FontAwesome5 name='camera' style={[fontSize(15),styles.fontwhite]} /></TouchableWithoutFeedback>
       </View >
-    <View style={[styles.bgbarback,{width:widthValue(1.12),},radius(20),padding(0,20,30)]}>
+    <View style={[darkmode?styles.bgbarback:styles.bgWhite,{width:widthValue(1.12),},radius(20),padding(0,20,30)]}>
         <Infobar headingText={'Sanctioned Load'} detail={details.sanctionedLoad}/>
         <Infobar headingText={'Service date'} detail={details.serviceDate}/>
         <Infobar headingText={'Meter Seial Number'} detail={details.msn}/>

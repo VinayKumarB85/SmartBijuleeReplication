@@ -178,6 +178,10 @@ export const styles = StyleSheet.create({
     bgbar: { backgroundColor: Colors.bar },
     bgbarback: { backgroundColor: Colors.barback },
     bgDrawer: { backgroundColor: Colors.Drawer },
+    bgLightWhite:{backgroundColor:Colors.lightWhite},
+    bgLightShadowRed:{backgroundColor:Colors.lightShadowRed},
+    bglightBarBack:{backgroundColor:Colors.lightBarback},
+    bgbuttonsbar:{backgroundColor:Colors.buttonsbar},
 
 
 

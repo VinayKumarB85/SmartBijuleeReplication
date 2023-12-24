@@ -4,13 +4,17 @@ import SettingsName from '../../../SettingsName/SettingsName'
 import {borderWidth, fontSize, marginPosition, padding, styles, widthValue,heightValue,radius} from '../../../../../Utils/Styles'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import FillDetails from '../Components/Number/Number'
+import { useSelector } from 'react-redux'
+
 
 const ConfirmDetails = ({name,number,dropdownvalue}) => {
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
   // 
   const [onchangeText,setOnChangeText] = useState('')
   return (
     <View>
-    <View style={[{width:widthValue(1.15),},marginPosition(0,25,0,25),styles.bgbarback,padding(0,20,20),radius(15)]}>
+    <View style={[{width:widthValue(1.15),},marginPosition(0,25,0,25),darkmode?styles.bgbarback:styles.bgWhite,padding(0,20,20),radius(15)]}>
       <SettingsName name1={'Confirm the'} name2={'Details'} />
       <View style={[styles.borderGreen,borderWidth(0,0,0,1,0),marginPosition(0,0,5,0)]}> 
         <Text style={[styles.gr,padding(0,10,0)]}>Name</Text>

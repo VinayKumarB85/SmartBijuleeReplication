@@ -15,7 +15,7 @@ import ChangePassword from "../../Screens/SettingsPage/Screens/ChangePassword/Ch
     { name1:'Change' ,name2:'Password',details:'Change your current password',icon:'lock','screenName':'ChangePassword','screen':ChangePassword},
 ],
     appSettingsData:[
-        { name1:'Color' ,name2:'Mode',details:'To change the app view to lioght/dark',icon:'sun','screenName':'ColorMode','screen':ColorMode,},
+        { name1:'Color' ,name2:'Mode',details:'To change the app view to light/dark',icon:'sun','screenName':'ColorMode','screen':ColorMode,},
         { name1:'Change' ,name2:'Language',details:'To change language ',icon:'language', 'screenName':'ChangeLanguage','screen':ChangeLanguage},
         { name1:'User' ,name2:'Management',details:'To add family members',icon:'user-plus','screenName':'UserManagement','screen':UserManagement},
     ],

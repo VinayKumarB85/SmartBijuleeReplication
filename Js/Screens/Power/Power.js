@@ -9,24 +9,18 @@ import VoltageComponent from './Components/VoltageComponent/VoltageComponent'
 import VoltageHour from './Components/VoltageHour'
 import PowerButtons from './Components/PowerButtons/PowerButtons'
 import LogHourScrollBar from './Components/LogHourScrollBar'
+import { useSelector } from 'react-redux'
+import MenuBar from '../../Components/MenuBar/MenuBar'
 
-const Power = ({ navigation }) => {
-    const openDrawer = () => {
-        navigation.toggleDrawer();
-    }
+const Power = () => {
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
+
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), },paddingPosition(0,0,0,) ,styles.bglightblack]}>
-                <View style={[marginPosition(20, 0, 0, 30)]}>
-                    <TouchableOpacity
-                        onPress={openDrawer}
-                    >
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24),]}
-                        />
-                    </TouchableOpacity>
-                </View>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), },paddingPosition(0,0,0,) ,darkmode?styles.bglightblack:styles.bgLightWhite]}>
+                <MenuBar />
                 <ScrollView  style={[marginPosition(0,20,0,20)]}>
                     <View style={[marginPosition(10)]}>
                         <Header2
@@ -37,9 +31,9 @@ const Power = ({ navigation }) => {
                     <View style={[marginPosition(20,20,0,)]}>
                         <VoltageComponent/>
                     </View>
-                    <View style={[marginPosition(20,0,0,0),{width:widthValue(1.12),height:heightValue(2.3)},styles.bgbarback,radius(0,15,0,0,15),padding(0,20,20)]}>
+                    <View style={[marginPosition(20,0,0,0),{width:widthValue(1.12),height:heightValue(2.3)},darkmode?styles.bgbarback:styles.bgWhite,radius(0,15,0,0,15),padding(0,20,20)]}>
                         <View>
-                        <Text style={[styles.fontwhite,fontSize(15)]}>Voltage<Text style={[styles.green]}> Hourly Trend</Text></Text>
+                        <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(15)]}>Voltage<Text style={[styles.green]}> Hourly Trend</Text></Text>
                         <VoltageHour/>
                         <LogHourScrollBar />
                         </View>

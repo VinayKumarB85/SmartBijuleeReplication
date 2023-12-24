@@ -19,9 +19,14 @@ import SettingHeader from '../../Components/Header/SettingHeader/SettingHeader';
 import LinkBox from './Components/LinkBox/LinkBox';
 import LinkBox2 from './Components/LinkBox/LinkBox2';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
+import { useSelector } from 'react-redux';
+import MenuBar from '../../Components/MenuBar/MenuBar';
 
-const UsefulLinks = ({ navigation }) => {
+const UsefulLinks = () => {
     //Linking Section
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
 
     const GoToLink = ()=>{
         const url = 'https://www.uday.gov.in/';
@@ -50,9 +55,6 @@ const UsefulLinks = ({ navigation }) => {
 
     const currentYear  = new Date().getFullYear();
 
-    const openDrawer = () => {
-        navigation.toggleDrawer();
-    };
 
     const [openIndex, setOpenIndex] = useState()
     const handleShowDetails = (index) => {
@@ -64,16 +66,9 @@ const UsefulLinks = ({ navigation }) => {
                 style={[
                     flex(1),
                     { width: widthValue(1) },
-                    styles.bglightblack,
+                    darkmode?styles.bglightblack:styles.bgLightWhite,
                 ]}>
-                <View style={[marginPosition(20, 20, 0, 25)]}>
-                    <TouchableOpacity onPress={openDrawer}>
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24)]}
-                        />
-                    </TouchableOpacity>
-                </View>
+               <MenuBar />
                 <ScrollView>
                     <View style={[marginPosition(10, 0, 0, 20)]}>
                         <View style={[styles.centerHorizontal]}>
@@ -84,19 +79,19 @@ const UsefulLinks = ({ navigation }) => {
                         </View>
                     </View>
                     <View style={[styles.centerHorizontal]} >
-                <View style={[styles.bgbarback,{width:widthValue(1.15)},marginPosition(0,0,0,25),radius(30),padding(0,10,20),styles.selfStart,styles.row,styles.centerHorizontal,{gap:10}]}>
-                    <FontAwesome5 name='search' style={[fontSize(20),styles.fontwhite]} />
-                    <TextInput   placeholder='Search' placeholderTextColor={'white'} style={[styles.fontwhite]} onChangeText={(value)=>{if(value === Shortname){
+                <View style={[darkmode?styles.bgbarback:styles.bgWhite,{width:widthValue(1.15)},marginPosition(0,0,0,25),radius(30),padding(0,10,20),styles.selfStart,styles.row,styles.centerHorizontal,{gap:10}]}>
+                    <FontAwesome5 name='search' style={[fontSize(20),darkmode?styles.fontwhite:styles.black]} />
+                    <TextInput   placeholder='Search' placeholderTextColor={darkmode?'white':'black'} style={[styles.fontwhite]} onChangeText={(value)=>{if(value === Shortname){
                         console.log(Shortname)
                     }}}/>
                 </View>
-                <Text style={[styles.fontwhite,fontSize(8),styles.textCenter,marginPosition(10,0,10,0)]}> Click on the redirect to specific page to know more information</Text>
+                <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(8),styles.textCenter,marginPosition(10,0,10,0)]}> Click on the redirect to specific page to know more information</Text>
                 <View style={[styles.selfStart,marginPosition(10,0,0,25)]}>
     <FontAwesome6 name={'bolt'} style={[styles.green,fontSize(20)]} />
 </View>
-                <TouchableOpacity style={[styles.bgbarback,{width:widthValue(1.15), height:heightValue(8),gap:20},marginPosition(30,0,20,0),padding(0,20,10),styles.spaceBetweenVertical,radius(10)]} onPress={GoToLink}>
-                    <Text style={[fontSize(20),styles.fontwhite]}> UDAY</Text>
-                    <Text style={[fontSize(10),styles.fontwhite]}> Ujwal Discom Assurance Yojana</Text>
+                <TouchableOpacity style={[darkmode?styles.bgbarback:styles.bgWhite,{width:widthValue(1.15), height:heightValue(8),gap:20},marginPosition(30,0,20,0),padding(0,20,10),styles.spaceBetweenVertical,radius(10)]} onPress={GoToLink}>
+                    <Text style={[fontSize(20),darkmode?styles.fontwhite:styles.black]}> UDAY</Text>
+                    <Text style={[fontSize(10),darkmode?styles.fontwhite:styles.black]}> Ujwal Discom Assurance Yojana</Text>
                 </TouchableOpacity>
 
 <View style={[styles.selfStart,marginPosition(10,0,30,25)]}>

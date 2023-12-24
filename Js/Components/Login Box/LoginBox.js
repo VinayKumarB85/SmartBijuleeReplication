@@ -86,7 +86,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                   ]}>
                   <Text
                     style={[
-                      isCustomerIdFocused ? fontSize(11.5) : fontSize(12.5),
+                      isCustomerIdFocused ? fontSize(11) : fontSize(12),
                       styles.lightGray,
                     ]}>
                     CUSTOMER ID/MOBILE NUMBER
@@ -100,7 +100,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                         borderBottomWidth: 1,
                         paddingVertical: 0,
                       },
-                      fontSize(19),
+                      fontSize(22),
                       styles.fontwhite,
                       styles.borderGreen,
                     ]}
@@ -120,6 +120,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                     isPasswordFocused ? radius(15) : radius(0),
                     {height: heightValue(9)},
                     marginPosition(0, 25, 0, 25),
+
                   ]}>
                   <View
                     style={[
@@ -128,7 +129,7 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                     ]}>
                     <Text
                       style={[
-                        isPasswordFocused ? fontSize(11.5) : fontSize(12.5),
+                        isPasswordFocused ? fontSize(12) : fontSize(13),
                         styles.lightGray,
                       ]}>
                       PASSWORD
@@ -142,10 +143,11 @@ const LoginBox = ({onInputChange,setCustomerID,CustomerID,pass,setPass, onChange
                       <TextInput
                         style={[
                           {
-                            height: heightValue(18),
+                            height: heightValue(20),
                             width: widthValue(2.2),
+                            paddingVertical: 0,
                           },
-                          fontSize(19),
+                          fontSize(22),
                           styles.fontwhite,
                         ]}
                         value={pass}

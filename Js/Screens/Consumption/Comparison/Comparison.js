@@ -7,24 +7,18 @@ import DrawerScreenWrapper from '../../Drawer Nav/Drawers/DrawerScreenWrapper'
 import Header2 from '../../../Components/Header/Header2'
 import GraphSheet2 from '../../../Components/Graph/GraphSheet2'
 import MonthlyBox from '../../../Components/Box1/MonthlyBox'
+import { useSelector } from 'react-redux'
+import MenuBar from '../../../Components/MenuBar/MenuBar'
+import ComparisonComp from '../../../Components/Box1/ComparisionComp'
 
 const Comparison = ({ navigation }) => {
-    const openDrawer = () => {
-        navigation.toggleDrawer();
-    }
+    const darkmode=useSelector((state)=>state.system.darkMode);
+console.log('darkmodeeeee',darkmode);
+   
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, styles.bglightblack]}>
-                <View style={[marginPosition(20, 0, 0, 25)]}>
-                    <TouchableOpacity
-                        onPress={openDrawer}
-                    >
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24),]}
-                        />
-                    </TouchableOpacity>
-                </View>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), },darkmode? styles.bglightblack:styles.bgLightWhite]}>
+                <MenuBar />
                 <ScrollView >
                     <View style={[marginPosition(10, 20, 0, 15)]}>
                         <Header2
@@ -33,18 +27,18 @@ const Comparison = ({ navigation }) => {
                             Desc={'Compare your daily, weekly & monthly consumption to keep a tab on electricity usage'} />
                     </View>
                     <View style={[{ width: widthValue(1.1), }, marginPosition(0, 20, 0, 20), styles.spaceBetween, styles.row,]}>
-                        <Box2 text1={'Today'} text2={'[Inprogress]'} />
-                        <Box2 text3={'Yesterday'} />
+                        <ComparisonComp text1={'Today'} text2={'[Inprogress]'} />
+                        <ComparisonComp text3={'Yesterday'} />
                     </View>
-                    <View style={[marginPosition(15, 20, 0, 20), styles.bgbarback, radius(18), screenHeight(1.95), padding(0, 20, 10)
+                    <View style={[marginPosition(15, 20, 0, 20),darkmode? styles.bgbarback:styles.bgWhite, radius(18), screenHeight(1.95), padding(0, 20, 10)
                     ]}>
                         <View style={[styles.row, paddingPosition(0, 0, 0, 10)]}>
-                            <Text style={[styles.fontwhite, fontSize(20)]}>Weekly</Text>
+                            <Text style={[darkmode ?styles.fontwhite:styles.black, fontSize(20)]}>Weekly</Text>
                             <Text style={[styles.green, fontSize(20)]}> Comparison</Text>
                         </View>
                         <GraphSheet2 />
-                        <View style={[ styles.spaceAroundVertical,marginPosition(10,0,0,10),paddingPosition(0,0,10),{gap:5}]}>
-                            <Text style={[styles.fontwhite, fontSize(10)]}>Last week Consumption (Units)</Text>
+                        <View style={[styles.row, styles.spaceAroundVertical,marginPosition(10,0,0,10),paddingPosition(0,0,10),{gap:5}]}>
+                            <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(10)]}>Last week Consumption (Units)</Text>
                             <Text style={[styles.green, fontSize(10)]}>Current week Consumption (Units)</Text>
                         </View>
                     </View>

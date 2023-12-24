@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   styles,
   paddingPosition,
@@ -15,12 +15,8 @@ import {
   marginPosition,
   radius,
   flex,
-  screenHeight,
-  screenWidth,
   widthValue,
   heightValue,
-  heightwidth,
-  fonting,
 } from '../../Utils/Styles';
 import {TouchableOpacity} from 'react-native';
 import Buttons from '../../Components/Buttons';
@@ -33,8 +29,9 @@ const Forgot = ({navigation}) => {
   const [consumerId,setConsumerId] = useState('')
   const [buttonColor,setButtonColor]= useState()
   const [loader,setLoader] = useState('Submit')
+
   const checkConditions = (consumerId) => {
-    const isConditionSatisfied =typeof pass === 'string' && pass.trim() !== '';
+    const isConditionSatisfied = typeof consumerId === 'string' && consumerId.trim() !== '';
     console.log('isConditionSatisfied:', isConditionSatisfied);
     setButtonColor(isConditionSatisfied ?'#64ad64':'#262f40');
   };
@@ -174,7 +171,9 @@ console.log('loginId',loginId)
                         styles.borderGreen,
                       ]}
                       value={consumerId}
-                      onChangeText={(value)=>setConsumerId(value)}
+                      onChangeText={(value)=>
+                       { checkConditions(value)
+                        setConsumerId(value)}}
                       onFocus={handleCustomerFocus}
                       onBlur={() => setIsCustomerIdFocused(false)}></TextInput>
                   </View>

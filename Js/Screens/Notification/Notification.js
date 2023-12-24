@@ -17,27 +17,23 @@ import {
 } from '../../Utils/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { RollInLeft, RotateInUpLeft } from 'react-native-reanimated';
+import MenuBar from '../../Components/MenuBar/MenuBar';
+import { useSelector } from 'react-redux';
 
 const Notification = ({ navigation }) => {
-    const openDrawer = () => {
-        navigation.toggleDrawer();
-    };
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
+    
     return (
         <DrawerScreenWrapper>
             <SafeAreaView
                 style={[
                     flex(1),
                     { width: widthValue(1), },
-                    styles.bglightblack,
+                    darkmode?styles.bglightblack:styles.bgLightWhite,
                 ]}>
-                <View style={[marginPosition(20, 20, 0, 25)]}>
-                    <TouchableOpacity onPress={openDrawer}>
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24)]}
-                        />
-                    </TouchableOpacity>
-                </View>
+                <MenuBar />
                 <ScrollView>
                     <View style={[marginPosition(10, 0, 20, 15)]}>
                         <Header2
@@ -46,7 +42,7 @@ const Notification = ({ navigation }) => {
                             Desc={'Engage with the utility via notifications'}
                         />
                     </View>
-                    <View style={[styles.selfStart, marginPosition(40, 25, 0, 25)]}>
+                    <View style={[styles.selfStart, marginPosition(20, 25, 0, 25)]}>
                         <View
                             style={[
                                 {

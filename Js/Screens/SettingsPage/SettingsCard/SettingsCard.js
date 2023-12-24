@@ -6,9 +6,13 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import {SettingsCardData} from '../../../Constants/SettingCardInfo/SettingsCardInfo';
 import SettingsHeader from '../SettingsHeader/SettingsHeader';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 // import SettingsCardData from '../../../Constants/SettingCardInfo/SettingsCardData'
+
  
 const SettingsCard = ({navigation}) => {
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
 
     const navigateToScreen = (screen)=>{
         navigation.navigate(screen)
@@ -24,19 +28,19 @@ const SettingsCard = ({navigation}) => {
         style={[
           styles.row,
           styles.spaceBetweenVertical,
-          {width: widthValue(1.1), height: heightValue(12)},
-          styles.bgbarback,
+          {width: widthValue(1.1), height: heightValue(10)},
+          darkmode?styles.bgbarback:styles.bgWhite,
           styles.centerHorizontal,
-          padding(0, 15, 20),
+          paddingPosition(20, 20, 20,20),
           radius(15),
           marginPosition(0,0,20,0)
         ]}>
     <View style={[styles.row, {gap: 10}, styles.centerHorizontal]}>
       <View
         style={[
-          {width: widthValue(10), height: widthValue(10),backgroundColor:'#28b085'},
+          {width: widthValue(9), height: widthValue(9),backgroundColor:'#28b085'},
           
-          radius(widthValue(5)),
+          radius(widthValue(4.5)),
           styles.allCenter,
         ]}>
         {/* <AntDesign name={card.icon} size={20} color="white" /> */}
@@ -44,8 +48,8 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
+      <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(17)]}>{card.name1}<Text style={[styles.green,fontSize(17)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(16)]}>{card.details}</Text>
   </View>
       </View>
     </View>
@@ -62,10 +66,10 @@ const SettingsCard = ({navigation}) => {
         style={[
           styles.row,
           styles.spaceBetweenVertical,
-          {width: widthValue(1.1), height: heightValue(12)},
-          styles.bgbarback,
+          {width: widthValue(1.1), height: heightValue(10)},
+          darkmode?styles.bgbarback:styles.bgWhite,
           styles.centerHorizontal,
-          padding(0, 5, 20),
+          paddingPosition(20, 20, 20,20),
           radius(15),
           marginPosition(0,0,20,0)
         ]}>
@@ -81,8 +85,8 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
+      <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(17)]}>{card.name1}<Text style={[styles.green,fontSize(17)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(16)]}>{card.details}</Text>
   </View>
       </View>
     </View>
@@ -99,8 +103,8 @@ const SettingsCard = ({navigation}) => {
         style={[
           styles.row,
           styles.spaceBetweenVertical,
-          {width: widthValue(1.1), height: heightValue(12)},
-          styles.bgbarback,
+          {width: widthValue(1.1), height: heightValue(10)},
+          darkmode?styles.bgbarback:styles.bgWhite,
           styles.centerHorizontal,
           padding(0, 15, 20),
           radius(15),
@@ -118,8 +122,8 @@ const SettingsCard = ({navigation}) => {
       </View>
       <View>
         <View>
-      <Text style={[styles.fontwhite,fontSize(15)]}>{card.name1}<Text style={[styles.green,fontSize(14)]}> {card.name2}</Text></Text>
-      <Text style={[styles.gray,marginPosition(4),fontSize(14)]}>{card.details}</Text>
+      <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(17)]}>{card.name1}<Text style={[styles.green,fontSize(17)]}> {card.name2}</Text></Text>
+      <Text style={[styles.gray,marginPosition(4),fontSize(16)]}>{card.details}</Text>
   </View>
       </View>
     </View>

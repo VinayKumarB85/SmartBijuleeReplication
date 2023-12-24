@@ -19,8 +19,13 @@ import SettingsName from '../../SettingsName/SettingsName';
 import { TouchableWithoutFeedback } from 'react-native';
 import ConsumerBox from '../../../../Components/ConsumerBox/ConsumerBox';
 import AddAccount from '../../../../Components/AddAccount/AddAccount';
+import { useSelector } from 'react-redux';
+
 
 const ManageAccount = () => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
 
   const [showConsumer, setShowConsumer] = useState(false);
   const [consumerId, setConsumerId] = useState('');
@@ -44,7 +49,7 @@ const ManageAccount = () => {
   }
 
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
+    <SafeAreaView style={[darkmode?styles.bglightblack:styles.bgLightWhite, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 25, 0, 20)]}>
         <Header2

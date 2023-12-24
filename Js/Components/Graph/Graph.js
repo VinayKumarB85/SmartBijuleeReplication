@@ -7,8 +7,11 @@ import GraphSheet2 from './GraphSheet2'
 import { flex, heightValue, widthValue, styles, radius, fontSize, marginPosition, screenHeight, screenWidth, padding } from '../../Utils/Styles'
 import { graphData } from '../../Constants/Const'
 import GraphButtons from './GraphButtons'
+import { useSelector } from 'react-redux'
 
 const Graph = () => {
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
     const [currentPage, setCurrentPage] = useState(0);
 
     const todayGraph = () => {
@@ -32,18 +35,18 @@ const Graph = () => {
                 <View style={[styles.row, styles.spaceEvenly, { width: widthValue(1.15), }, padding(0, 15, 0)]}>
                     <GraphButtons btnText={'Today'}
                         onPress={todayGraph}
-                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 0 ? styles.bggreen : styles.bgbarback]}
-                        fontStyle={[fontSize(16), currentPage === 0 ? styles.black : styles.fontwhite,]}
+                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 0 ? styles.bggreen : darkmode?styles.bgbarback:styles.bgWhite ]}
+                        fontStyle={[fontSize(16), currentPage === 0 ? darkmode? styles.black:styles.fontwhite : darkmode? styles.fontwhite:styles.black,]}
                     />
                     <GraphButtons btnText={'Week'}
                         onPress={weekGraph}
-                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 1 ? styles.bggreen : styles.bgbarback]}
-                        fontStyle={[fontSize(16), currentPage === 1 ? styles.black : styles.fontwhite,]}
+                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 1 ? styles.bggreen : darkmode?styles.bgbarback:styles.bgWhite]}
+                        fontStyle={[fontSize(16), currentPage === 1 ?  darkmode? styles.black:styles.fontwhite  : darkmode?styles.fontwhite:styles.black,]}
                     />
                     <GraphButtons btnText={'Month'}
                         onPress={monthGraph}
-                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 2 ? styles.bggreen : styles.bgbarback]}
-                        fontStyle={[fontSize(16), currentPage === 2 ? styles.black : styles.fontwhite,]}
+                        btnStyle={[radius(30), padding(0, 6, 25), currentPage === 2 ? styles.bggreen : darkmode?styles.bgbarback:styles.bgWhite]}
+                        fontStyle={[fontSize(16), currentPage === 2 ? darkmode? styles.black:styles.fontwhite : darkmode?styles.fontwhite:styles.black,]}
                     />
                 </View>
                 <Swiper loop={false}
@@ -69,7 +72,7 @@ const Graph = () => {
                     <Graphsheet data={graphData.monthData} xValue={'month'} yValue={'bill'} />
                 </Swiper >
             </View >
-            <View style={[styles.allCenter, marginPosition(10)]}><Text style={[styles.fontwhite, fontSize(11)]}>(click on the chart to see the value)</Text></View>
+            <View style={[styles.allCenter, marginPosition(10)]}><Text style={[darkmode?styles.fontwhite:styles.black, fontSize(11)]}>(click on the chart to see the value)</Text></View>
         </View>
     )
 }

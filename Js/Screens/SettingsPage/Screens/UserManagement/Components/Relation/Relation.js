@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { borderColor, borderWidth, flex, fontSize, heightValue, marginPosition, styles, widthValue, radius } from '../../../../../../Utils/Styles';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { useSelector } from 'react-redux';
 
 const Dropdown = ({dataFromRelation}) => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
   const [relations, setRelations] = useState([
     { name: 'Master', id: 1, color: 'white' },
     { name: 'Family', id: 2, color: 'white' },
@@ -15,7 +19,7 @@ const Dropdown = ({dataFromRelation}) => {
 
   const handleRelations = (selectedName) => {
     const updatedRelations = relations.map(item => {
-      return { ...item, color: item.name === selectedName ? 'green' : 'white' };
+      return { ...item, color: item.name === selectedName ? darkmode? 'green' : 'white': selectedName ?'black' : 'green' };
     });
 
     setRelations(updatedRelations);
@@ -28,8 +32,8 @@ const Dropdown = ({dataFromRelation}) => {
       <Text style={[styles.gr, marginPosition(0, 0, 20, 0)]}>Relation</Text>
       <TouchableOpacity onPress={() => setShowList(!showList)}>
         <View style={[styles.row, marginPosition(0, 0, 20, 20), styles.centerHorizontal]}>
-          <Text style={[styles.white, { width: widthValue(1.6) }]}>{selectedValue}</Text>
-          <FontAwesome5Icon name={showList ? 'chevron-up' : 'chevron-down'} style={[styles.white, fontSize(12)]} />
+          <Text style={[darkmode?styles.white:styles.black, { width: widthValue(1.6) }]}>{selectedValue}</Text>
+          <FontAwesome5Icon name={showList ? 'chevron-up' : 'chevron-down'} style={[darkmode?styles.white:styles.black, fontSize(12)]} />
         </View>
       </TouchableOpacity>
       {showList ? (
@@ -37,7 +41,7 @@ const Dropdown = ({dataFromRelation}) => {
           {relations.map((item, index) => (
             <View style={[{ width: widthValue(1.4) }]}>
               <TouchableOpacity key={index} onPress={() => handleRelations(item.name)}>
-                <View style={[styles.bgbarback, borderWidth(0, 0, 0, 0.8, 0), styles.borderWhite,]}>
+                <View style={[darkmode?styles.bgbarback:styles.bgWhite, borderWidth(0, 0, 0, 0.8, 0), styles.borderWhite,]}>
                   <View style={[styles.row, styles.centerHorizontal, styles.spaceBetweenVertical]}>
                     <Text style={{ color: item.color, padding: 10 }}>{item.name}</Text>
                     {item.color === 'green' && <FontAwesome5Icon name="check" style={{ color: 'green', marginRight: 10 }} />}

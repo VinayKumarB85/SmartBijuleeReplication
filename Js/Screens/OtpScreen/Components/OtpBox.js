@@ -96,7 +96,7 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                                             { borderBottomWidth: 1, },
                                             styles.borderGreen,
                                             // styles.fontwhite,
-                                            fontSize(20),
+                                            fontSize(22),
                                             styles.white,
                                             { padding: 0, paddingTop: 10 }
                                         ]}
@@ -116,7 +116,7 @@ const OtpBox = ({customerNumber,updateButtonColor,onChangeOtp}) => {
                                             { borderBottomWidth: 1 },
                                             styles.borderGreen,
                                             styles.fontwhite,
-                                            fontSize(20),
+                                            fontSize(22),
                                             { padding: 0, paddingTop: heightValue(80) }
                                         ]}
                                         onChangeText={onChangeOtp}

@@ -8,11 +8,15 @@ import {
     marginPosition,
     radius
 } from '../../../Utils/Styles';
-
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useSelector } from 'react-redux';
 
 const FaqDetailsButton = ({title1,answer }) => {
+    
 
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
+    
     const [showDetails, setShowDetails] = useState(false)
 
     const handleDetails = () => {
@@ -23,7 +27,7 @@ const FaqDetailsButton = ({title1,answer }) => {
             <TouchableOpacity
                 activeOpacity={0.8}
                 style={[
-                    styles.bgbarback,
+                    darkmode?styles.bgbarback:styles.bglightBarBack,
                     padding(0, 10, 20),
                     { width: widthValue(1.1) },
                     marginPosition(10, 20, 0, 20),
@@ -31,7 +35,7 @@ const FaqDetailsButton = ({title1,answer }) => {
                 ]}
                 onPress={handleDetails}>
                 <View style={[styles.row, styles.spaceBetweenVertical, styles.centerHorizontal,]}>
-                    <Text style={[styles.fontwhite, fontSize(15),{width:widthValue(1.3)}]}>
+                    <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(15),{width:widthValue(1.3)}]}>
                         {title1}
                     </Text>
 
@@ -41,13 +45,13 @@ const FaqDetailsButton = ({title1,answer }) => {
             {showDetails && (
                 <View
                     style={[
-                        styles.bgbarback,
-                        padding(0, 10, 20),
+                        darkmode?styles.bgbarback:styles.bglightBarBack,
+                        padding(0, 20, 20),
                         { width: widthValue(1.1) },
                         marginPosition(0, 20, 10, 20),
                         radius(0, 0, 15, 15, 0),
                     ]}>
-                    <Text style={[styles.gr]}>{answer}</Text>
+                    <Text style={[darkmode?styles.gr:styles.gray]}>{answer}</Text>
                 </View>
 
             )}

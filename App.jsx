@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from './Js/Redux/store'
 import ResetPass from './Js/Screens/Forgot/ResetPass/ResetPass';
+import CalendarPage from './Js/Screens/Consumption/History/CalendarPage/CalendarPage';
 
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <StackNavigator />
     </NavigationContainer>
     {/* <ResetPass /> */}
+    {/* <CalendarPage /> */}
     </PersistGate>
     </Provider>
     

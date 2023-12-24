@@ -20,6 +20,8 @@ export const Colors = {
     gr: "#ada7a8",
     bar: '#3c3c42',
     barback: '#29292e',
-    Drawer: '#282f42'
-
+    Drawer: '#282f42',
+    lightWhite:"#f0ebeb",
+    lightBarback:'#cfcccc',
+    buttonsbar:'#f5fcfc'
 }

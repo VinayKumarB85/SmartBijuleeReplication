@@ -17,15 +17,19 @@ import Header2 from '../../../../Components/Header/Header2';
 import SettingsName from '../../SettingsName/SettingsName';
  import FontAwesome5 from 'react-native-vector-icons/FontAwesome5' 
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { useSelector } from 'react-redux';
 
 const ChangeLanguage = () => {
 
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
+
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
+    <SafeAreaView style={[darkmode?styles.bglightblack:styles.bgLightWhite, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 25, 0, 20)]}>
         <Header2
-          title1={'Chnage'}
+          title1={'Change'}
           title2={' Language'}
           Desc={
             'Select between your regional language Assamese and ENglish to view the App'

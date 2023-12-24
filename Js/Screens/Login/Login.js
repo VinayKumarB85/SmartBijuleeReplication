@@ -94,11 +94,11 @@ const Login = ({navigation}) => {
         Id: loginId,
       });
       setLoginError('');
-      setLoader('Sent Otp')
-      setButtonColor('#262f40')
       console.log(CustomerDetails);
       console.log('loginId', loginId);
     }
+    
+    else {
       const confirmResp = await dispatch(
         userVerifyApi({
           LoginID: CustomerID,
@@ -134,13 +134,12 @@ const Login = ({navigation}) => {
                 Id: CLoginId,
                 
               });
-              setLoader('Sent Otp')
-              setButtonColor('#262f40')
             },
           },
         ],
       );
     }
+  }
   };
 
 
@@ -196,6 +195,7 @@ const Login = ({navigation}) => {
               marginPosition(20),
               styles.allCenter,
               radius(40),
+              fontSize(19)
             ]}
             onPress={login}
             // onPress={otpPage}
@@ -203,16 +203,16 @@ const Login = ({navigation}) => {
             <Text style={[fontSize(17), styles.fontwhite]}>{loader}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={[marginPosition(15)]} onPress={forgotPage}>
-            <Text style={[fontSize(17), styles.fontwhite]}>
+            <Text style={[fontSize(18), styles.fontwhite]}>
               Forgot Password ?
             </Text>
           </TouchableOpacity>
           <View style={[marginPosition(20), styles.row]}>
-            <Text style={[fontSize(17), styles.fontwhite]}>
+            <Text style={[fontSize(18), styles.fontwhite]}>
               Don't have an account ?
             </Text>
             <TouchableOpacity onPress={createPage}>
-              <Text style={[fontSize(17), styles.green]}> Sign Up</Text>
+              <Text style={[fontSize(18), styles.green]}> Sign Up</Text>
             </TouchableOpacity>
           </View>
         </View>

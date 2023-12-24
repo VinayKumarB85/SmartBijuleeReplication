@@ -17,8 +17,13 @@ import Header2 from '../../../../Components/Header/Header2';
  import FontAwesome5 from 'react-native-vector-icons/FontAwesome5' 
 import AddAccount from '../../../../Components/AddAccount/AddAccount';
 import DetailsScreen1 from './DetailsScreen/DetailsScreen1';
+import { useSelector } from 'react-redux';
+
 
 const UserManagement = () => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
 
   const [showConsumer,setShowConsumer] = useState(false)
   
@@ -27,7 +32,7 @@ const UserManagement = () => {
     setShowConsumer(true)
   }
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
+    <SafeAreaView style={[darkmode?styles.bglightblack:styles.bgLightWhite, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 25, 0, 20)]}>
         <Header2

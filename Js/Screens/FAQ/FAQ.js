@@ -27,14 +27,16 @@ import FaqDetailsButton from './FaqDetailsButton/FaqDetailsButton';
 import SettingHeader from '../../Components/Header/SettingHeader/SettingHeader';
 import {useDispatch, useSelector} from 'react-redux';
 import {faqApi} from '../../api/userApi/faqApi';
+import MenuBar from '../../Components/MenuBar/MenuBar';
+
 
 const FAQ = ({navigation}) => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
   const [billingData, setBillingData] = useState([]);
   const [generalData, setGeneralData] = useState([]);
   const [displaycategory,setDisplayCategory] = useState('')
-  const openDrawer = () => {
-    navigation.toggleDrawer();
-  };
 
   const globalVariableFaq = useSelector(state => state);
   console.log('globalVariableFaq', globalVariableFaq);
@@ -46,6 +48,7 @@ const FAQ = ({navigation}) => {
   const dispatch = useDispatch();
 
   const faqDetails = async () => {
+
     const faqResp = await dispatch(
       faqApi({
         loginID: loginId,
@@ -91,16 +94,9 @@ const displayAllData = ()=>{
         style={[
           flex(1),
           {width: widthValue(1), paddingTop: heightValue(30)},
-          styles.bglightblack,
+          darkmode ?styles.bglightblack:styles.bgLightWhite,
         ]}>
-        <View style={[marginPosition(20, 20, 0, 25)]}>
-          <TouchableOpacity onPress={openDrawer}>
-            <FontAwesome5
-              name={'bars'}
-              style={[styles.fontwhite, fontSize(24)]}
-            />
-          </TouchableOpacity>
-        </View>
+       <MenuBar />
         <ScrollView>
           <View style={[marginPosition(10, 0, 0, 20)]}>
             <SettingHeader
@@ -134,7 +130,7 @@ const displayAllData = ()=>{
          ( <View>
             <Text
               style={[
-                styles.fontwhite,
+                darkmode?styles.fontwhite:styles.black,
                 fontSize(17),
                 marginPosition(20, 25, 10, 20),
               ]}>
@@ -153,7 +149,7 @@ const displayAllData = ()=>{
           <View>
             <Text
               style={[
-                styles.fontwhite,
+                darkmode?styles.fontwhite:styles.black,
                 fontSize(17),
                 marginPosition(20, 25, 10, 20),
               ]}>
@@ -174,7 +170,7 @@ const displayAllData = ()=>{
            <View>
            <Text
              style={[
-               styles.fontwhite,
+              darkmode?styles.fontwhite:styles.black,
                fontSize(17),
                marginPosition(20, 25, 10, 20),
              ]}>
@@ -193,7 +189,7 @@ const displayAllData = ()=>{
           <View>
             <Text
               style={[
-                styles.fontwhite,
+                darkmode?styles.fontwhite:styles.black,
                 fontSize(17),
                 marginPosition(20, 25, 10, 20),
               ]}>

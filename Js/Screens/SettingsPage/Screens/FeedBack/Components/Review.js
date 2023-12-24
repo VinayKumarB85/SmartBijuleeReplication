@@ -4,8 +4,12 @@ import { styles, flex, padding, marginPosition, widthValue, heightValue, radius,
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Message from './Message'
 import FirstPage from './FirstPage';
+import { useSelector } from 'react-redux';
 
 const Review = ({selectedIcon}) => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
     const [showMessage,setShowMessage] = useState(false);
     const [showFeedback,setShowFeedback] = useState(false);
 

@@ -11,8 +11,13 @@ import HistoryGraph from './HistoryGraph'
 import CalendarPage from '../../Screens/Consumption/History/CalendarPage/CalendarPage'
 import HistoryBox from '../../Screens/Consumption/HistoryBox'
 import HistoryBox2 from '../../Screens/Consumption/HistoryBox2'
+import { useSelector } from 'react-redux'
 
 const HistoryMainGraph = ({currentPage,onIndexChanged}) => {
+
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
     return (
         <View>
             <View
@@ -30,11 +35,11 @@ const HistoryMainGraph = ({currentPage,onIndexChanged}) => {
                 </Swiper >
             </View >
 
-            <View style={[styles.allCenter, { marginTop: 2 }]}>
+            <View style={[styles.allCenter, { marginTop: -10 }]}>
                 <Text style={[styles.green, fontSize(14)]}>X-axis Months and y-axis Consumption</Text>
-                <Text style={[styles.fontwhite, fontSize(12)]}>(Click on Charts to see the value)</Text> 
+                <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(12)]}>(Click on Charts to see the value)</Text> 
             </View>
-              <View>
+            <View>
               <HistoryBox  text1={'Total'} text2={' Consumption'}/>
               <HistoryBox2   text1={'Average'} text2={' Consumption'}/>
           </View>

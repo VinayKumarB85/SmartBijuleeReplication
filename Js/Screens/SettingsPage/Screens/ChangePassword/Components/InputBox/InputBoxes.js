@@ -8,8 +8,13 @@ import {
   heightValue,
 } from '../../../../../../Utils/Styles';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { useSelector } from 'react-redux';
+
 
 const InputBoxes = ({ borderstyle }) => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
   const [showPassword, setShowPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
@@ -90,7 +95,7 @@ const InputBoxes = ({ borderstyle }) => {
     <View style={{ width: widthValue(1.15), height: heightValue(3), margin: 5 }}>
       <View style={{ height: heightValue(9), margin: 0, marginBottom: 10 }}>
         <View style={{ height: heightValue(10), margin: 10 }}>
-          <Text style={{ fontSize: isPasswordFocused ? 11 : 13, color: 'white' }}>
+          <Text style={{ fontSize: isPasswordFocused ? 11 : 13, color:darkmode? 'white':'gray' }}>
             CURRENT PASSWORD
           </Text>
           <View
@@ -129,7 +134,7 @@ const InputBoxes = ({ borderstyle }) => {
       </View>
       <View style={{ height: heightValue(9), margin: 0, marginBottom: 10 }}>
         <View style={{ height: heightValue(10), margin: 10 }}>
-          <Text style={{ fontSize: isNewPasswordFocused ? 11 : 13, color: 'white' }}>
+          <Text style={{ fontSize: isNewPasswordFocused ? 11 : 13, color:darkmode? 'white':'gray'  }}>
             NEW PASSWORD
           </Text>
           <View
@@ -177,7 +182,7 @@ const InputBoxes = ({ borderstyle }) => {
       </View>
       <View style={{ height: heightValue(9), margin: 0, marginBottom: 10 }}>
         <View style={{ height: heightValue(10), margin: 10 }}>
-          <Text style={{ fontSize: isConPasswordFocused ? 11 : 13, color: 'white' }}>
+          <Text style={{ fontSize: isConPasswordFocused ? 11 : 13, color:darkmode? 'white':'gray' }}>
             CONFIRM PASSWORD
           </Text>
           <View

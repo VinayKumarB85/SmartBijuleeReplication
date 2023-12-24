@@ -4,8 +4,13 @@ import { View } from 'react-native';
 import { VictoryPie, VictoryLabel } from 'victory-native';
 import Svg, { Circle } from 'react-native-svg';
 import { styles, fontSize, heightValue, widthValue } from '../Utils/Styles';
+import { useSelector } from 'react-redux';
+
 
 const DonutChart = () => {
+
+const darkmode=useSelector((state)=>state.system.darkMode);
+console.log('darkmodeeeee',darkmode);
     const data = [{ x: 1, y: '100%' }];
 
     const chartSize = widthValue(5); // Size of the chart container
@@ -25,7 +30,7 @@ const DonutChart = () => {
                 {/* VictoryPie */}
                 <VictoryPie
                     standalone={false}
-                    colorScale={[ '#29292e',]}
+                    colorScale={[darkmode? '#29292e':'white',]}
                     width={chartSize}
                     height={chartSize}
                     data={data}
@@ -36,7 +41,7 @@ const DonutChart = () => {
                 {/* VictoryLabel */}
                 <VictoryLabel
                     textAnchor="middle"
-                    style={{ fontSize: 15, fill: 'white', fontWeight: 'bold', backgroundColor: 'transparent' }}
+                    style={{ fontSize: 15, fill:darkmode? 'white':'black', fontWeight: 'bold', backgroundColor: 'transparent' }}
                     x={chartSize / 2}
                     y={chartSize / 2}
                     text="30%"

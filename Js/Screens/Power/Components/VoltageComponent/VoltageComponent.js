@@ -18,13 +18,17 @@ import {
 } from 'victory-native';
 import {graphData} from '../../../../Constants/Const';
 import {normalize} from '../../../../Utils/styles2';
+import { useSelector } from 'react-redux';
 
 const VoltageComponent = () => {
+
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
   const {height, width} = Dimensions.get('window');
   return (
     <View
       style={[
-        styles.bgbarback,
+        darkmode?styles.bgbarback:styles.bgWhite,
         radius(15),
         {width: widthValue(1.12), height: heightValue(7)},
         padding(0, 10, 20),
@@ -32,7 +36,7 @@ const VoltageComponent = () => {
         styles.row,
       ]}>
       <View style={[styles.selfStart]}>
-        <Text style={[styles.fontwhite, fontSize(15)]}>
+        <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(15)]}>
           Peak<Text style={[styles.green]}> Quality</Text>
         </Text>
         <View style={[{width: widthValue(2), height: heightValue(5)}]}>
@@ -74,14 +78,14 @@ const VoltageComponent = () => {
       </View>
       <View style={[styles.centerHorizontal, styles.spaceBetween]}>
         <View style={[styles.row, styles.allCenter]}>
-          <Text style={[styles.fontwhite]}>12am</Text>
+          <Text style={[darkmode?styles.fontwhite:styles.black]}>12am</Text>
           <Fontawesome5
             name={'chevron-up'}
             style={[styles.green, fontSize(16)]}
           />
         </View>
         <Text style={[styles.green, fontSize(30)]}>0</Text>
-        <Text style={[styles.fontwhite, fontSize(13)]}>Voltage</Text>
+        <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(13)]}>Voltage</Text>
       </View>
     </View>
   );

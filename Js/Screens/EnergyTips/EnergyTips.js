@@ -18,6 +18,8 @@ import Header2 from '../../Components/Header/Header2';
 import LottieView from 'lottie-react-native';
 import { useDispatch ,useSelector} from 'react-redux';
 import { energyTipsApi } from '../../api/userApi/energyTipsApi';
+import MenuBar from '../../Components/MenuBar/MenuBar';
+import EnergyComponent from './Components/EnergyComponent';
 
 const EnergyTips = ({ navigation }) => {
     const globalVariableEnergyTips = useSelector(state => state.auth.user.data);
@@ -28,11 +30,9 @@ const EnergyTips = ({ navigation }) => {
     // const [loginId,setLoginId] = useState('');
     // const [langId,setLangId] = useState('');
 
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
     
-    const openDrawer = () => {
-        navigation.toggleDrawer();
-    };
-
     const dispatch = useDispatch();
 
     const energyTips = async ()=>{
@@ -63,16 +63,9 @@ const EnergyTips = ({ navigation }) => {
                 style={[
                     flex(1),
                     { width: widthValue(1) },
-                    styles.bglightblack,
+                    darkmode?styles.bglightblack:styles.bgLightWhite,
                 ]}>
-                <View style={[marginPosition(20, 0, 0, 30)]}>
-                    <TouchableOpacity onPress={openDrawer}>
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24)]}
-                        />
-                    </TouchableOpacity>
-                </View>
+                <MenuBar />
                 <ScrollView>
                     <View style={[marginPosition(10, 20, 0, 20)]}>
                         <Header2
@@ -84,29 +77,17 @@ const EnergyTips = ({ navigation }) => {
                         />
                     </View>
 
-                    <View style={[styles.allCenter]}>
-                    <View
-                        style={[
-                            { width: widthValue(1.6), height: widthValue(1.6) },
-                            marginPosition(30, 30, 0, 20),radius(20),
-                            // styles.allCenter,
-                            padding(0,20,30),
-                            styles.bgbarback
-                        ]}>
-                            <Text style={[styles.green,fontSize(26),styles.textLeft]}>Tip 1</Text>
-                            <View style={[styles.allCenter]}>
-                         <LottieView  style={[{width:widthValue(3.5),height:widthValue(2.5)},styles.allCenter]} source={require('../../Bulb.json')} autoPlay loop /></View>
-                         <Text style={[styles.fontwhite,fontSize(16),styles.textCenter]}>Extra Tips</Text>
+             
+                    <View style={[marginPosition(0,0,0,0),{width:widthValue(1)}]}>
+                    <EnergyComponent />
                     </View>
-                    </View>
+                   
 
                     <View
-                        style={[{ width: widthValue(1.1) }, marginPosition(10, 30, 0, 20)]}>
-                        <Text style={[styles.fontwhite, marginPosition(10, 0, 20, 0), fontSize(18)]}>
+                        style={[{ width: widthValue(1.1) }, marginPosition(10, 30, 0, 20),darkmode ? styles.bglightblack:styles.bgWhite]}>
+                        <Text style={[darkmode?styles.fontwhite:styles.black, marginPosition(10, 0, 20, 0), fontSize(18)]}>
                             Saving <Text style={[styles.green]}>Guidelines</Text>
                         </Text>
-
-                        
                         {energyTipsData.map(({ id, title, description }) => (
     <EnergyTipsComponent key={id} tipName={title} tipDesc={description} />
   ))}

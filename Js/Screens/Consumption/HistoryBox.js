@@ -15,8 +15,12 @@ import {
 } from '../../Utils/Styles'
 import { VictoryAxis, VictoryBar, VictoryChart } from 'victory-native';
 import Fontawesome5 from 'react-native-vector-icons/FontAwesome5'
+import { useSelector } from 'react-redux';
+
 
 const HistoryBox = ({ text1, text2 }) => {
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
 
     const { height, width } = Dimensions.get('window')
     const consumption = [
@@ -39,13 +43,13 @@ const HistoryBox = ({ text1, text2 }) => {
             },
             marginPosition(20, 20, 0, 0),
             radius(15),
-            styles.bgbarback,
+            darkmode?styles.bgbarback:styles.bgWhite,
             styles.row,
             styles.allCenter
             ]}>
             <View style={[{width: widthValue(1.5),},styles.flexStart]}> 
                 <View style={[styles.row]}>
-                    <Text style={[styles.fontwhite, fontSize(21)]}>{text1}</Text>
+                    <Text style={[darkmode?styles.fontwhite:styles.black, fontSize(21)]}>{text1}</Text>
                     <Text style={[styles.green, fontSize(21)]}>{text2}</Text>
                 </View>
                     <View>
@@ -57,7 +61,7 @@ const HistoryBox = ({ text1, text2 }) => {
                         >
                             <VictoryBar
                                 data={consumption.map((item) => ({
-                                    ...item, fill: item.consume % 2 === 0 ? '#64ad64' : '#ada7a8',
+                                    ...item, fill: item.consume % 2 === 0 ? '#ada7a8' :'#64ad64',
                                 }))}
                                 x="consume"
                                 y="total"
@@ -83,7 +87,7 @@ const HistoryBox = ({ text1, text2 }) => {
               <View style={[styles.centerHorizontal, styles.spaceBetween,]}>
                 <Fontawesome5 name={'chevron-up'} style={[styles.green, fontSize(18)]} />
                 <Text style={[styles.green, fontSize(30),]}>0</Text>
-                <Text style={[styles.green, fontSize(16),]}>Units</Text>
+                <Text style={[darkmode?styles.green:styles.black, fontSize(16),]}>Units</Text>
             </View>
         </View>
     );

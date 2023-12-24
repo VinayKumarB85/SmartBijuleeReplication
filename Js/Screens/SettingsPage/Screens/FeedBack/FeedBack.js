@@ -8,12 +8,14 @@ import Reviews from './Components/Review';
 import Review from './Components/Review';
 import Message from './Components/Message'
 import FirstPage from './Components/FirstPage';
+import { useSelector } from 'react-redux';
 
 const FeedBack = () => {
-  
+  const darkmode=useSelector((state)=>state.system.darkMode);
+  console.log('darkmodeeeee',darkmode);
 
   return (
-    <SafeAreaView style={[styles.bglightblack, flex(1),]}>
+    <SafeAreaView style={[darkmode?styles.bglightblack:styles.bgLightWhite, flex(1),]}>
       <BackButton />
       <View style={[marginPosition(10, 10, 30, 30)]}>
         <Header2 title1={'Speak Your'} title2={'Mind'} Desc={'Please provide your feedback, it will help us to serve you better'} />

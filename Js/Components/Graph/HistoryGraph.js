@@ -8,8 +8,12 @@ import {
     VictoryAxis
 } from 'victory-native';
 import { widthValue, styles, heightValue, fontSize, screenHeight, marginPosition } from '../../Utils/Styles';
+import { useSelector } from 'react-redux';
 
 const HistoryGraph = ({ data, xValue, yValue }) => {
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
 
     const { height, width } = Dimensions.get('window')
     const fixedBarHeight = 15;
@@ -20,7 +24,7 @@ const HistoryGraph = ({ data, xValue, yValue }) => {
                 {/* Black Bar */}
                 <VictoryBar
                     data={data.map(d => ({ x: d[xValue], y: fixedBarHeight }))}
-                    style={{ data: { fill: '#3c3c42' } }}
+                    style={{ data: { fill:darkmode? '#3c3c42':'#cfcccc' } }}
                     barWidth={widthValue(28)}
                     cornerRadius={{ top: 6 }}
                 />
@@ -41,18 +45,18 @@ const HistoryGraph = ({ data, xValue, yValue }) => {
                 <VictoryAxis
                     label=""
                     style={{
-                        axisLabel: { fontSize: fontSize(15), padding: 25, fill: 'white' }, // Change color of x-axis label
+                        axisLabel: { fontSize: fontSize(15), padding: 25,fill: darkmode?'white':'black' }, // Change color of x-axis label
                         ticks: { stroke: 'transparent' },
-                        tickLabels: { fontSize: fontSize(12), fill: 'white' } // Change color of x-axis tick labels
+                        tickLabels: { fontSize: fontSize(12), fill: darkmode?'white':'black' } // Change color of x-axis tick labels
                     }}
                 />
                 <VictoryAxis
                     dependentAxis
                     label=""
                     style={{
-                        axisLabel: { fontSize: fontSize(12), padding: 30, fill: 'white' }, // Change color of y-axis label
+                        axisLabel: { fontSize: fontSize(12), padding: 30,  fill: darkmode?'white':'#64ad64' }, // Change color of y-axis label
                         ticks: { stroke: 'transparent' },
-                        tickLabels: { fontSize: fontSize(10), fill: 'white' } // Change color of y-axis tick labels
+                        tickLabels: { fontSize: fontSize(10),  fill: darkmode?'white':'#64ad64' } // Change color of y-axis tick labels
                     }}
                 />
             </VictoryChart>

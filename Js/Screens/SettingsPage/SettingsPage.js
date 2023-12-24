@@ -11,24 +11,28 @@ import SettingsCard from './SettingsCard/SettingsCard'
 import StackNavigator from '../StackNav/Stack'
 import { createStackNavigator } from '@react-navigation/stack'
 import PersonalInfo from './Screens/PersonalInfo/PersonalInfo'
+import { useSelector } from 'react-redux'
+
 
 const SettingsPage = ({ navigation }) => {
 
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
     const openDrawer = () => {
         navigation.toggleDrawer();
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, styles.bglightblack]}>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), }, darkmode?styles.bglightblack:styles.bgLightWhite]}>
                 <View style={[marginPosition(30, 0, 0, 25)]}>
                     <TouchableOpacity
                         onPress={openDrawer}
                     >
                         <FontAwesome5
                             name={'bars'}
-                            style={[styles.fontwhite, fontSize(24),]}
+                            style={[darkmode?styles.fontwhite:styles.black, fontSize(24),]}
                         />
-                        <Text style={[styles.fontwhite,fontSize(25),marginPosition(10,0,20,-10)]}>Settings</Text>
+                        <Text style={[darkmode?styles.fontwhite:styles.black,fontSize(25),marginPosition(10,0,20,-10)]}>Settings</Text>
                     </TouchableOpacity>
                 </View>
                 <ScrollView  contentContainerStyle={[paddingPosition(0,15,0,15)]}>

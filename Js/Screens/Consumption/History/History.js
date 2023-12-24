@@ -8,15 +8,21 @@ import HistoryMainGraph from '../../../Components/Graph/HIstoryMainGraph'
 
 import GraphButtons from '../../../Components/Graph/GraphButtons'
 import CalendarPage from './CalendarPage/CalendarPage'
-const History = ({ navigation }) => {
+import MenuBar from '../../../Components/MenuBar/MenuBar'
+import { useSelector } from 'react-redux'
+
+
+
+
+const History = () => {
+
+    const darkmode=useSelector((state)=>state.system.darkMode);
+console.log('darkmodeeeee',darkmode);
     const [calendarScreen,setCalendarScreen] = useState(false)
     const [currentPage,setCurrentPage] = useState(0)
     const [activeButton,setActiveButton] = useState(null)
 
     
-    const openDrawer = () => {
-        navigation.toggleDrawer(); 
-    }
 
     const gotoCalendarPage = ()=>{
         setCalendarScreen(true)
@@ -34,51 +40,42 @@ const History = ({ navigation }) => {
     }
     return (
         <DrawerScreenWrapper>
-            <SafeAreaView style={[flex(1), { width: widthValue(1), }, styles.bglightblack]}>
-                <View style={[marginPosition(20, 0, 0, 25)]}>
-                    <TouchableOpacity
-                        onPress={openDrawer}
-                    >
-                        <FontAwesome5
-                            name={'bars'}
-                            style={[styles.fontwhite, fontSize(24),]}
-                        />
-                    </TouchableOpacity>
-                </View>
+            <SafeAreaView style={[flex(1), { width: widthValue(1), },darkmode? styles.bglightblack:styles.bgLightWhite]}>
+                <MenuBar />
                 <ScrollView  styule={[{height:heightValue(1)}]}>
                     <View style={[marginPosition(10, 20, 0, 15)]}>
                         <Header2
                             title2={'Historic Electricity Consumption'}
                             Desc={'Historic consumption details on your finger tips '} />
                     </View>
-                    <View style={[styles.row, styles.spaceEvenly,marginPosition(10, 20, 0, 15), { width: widthValue(1.1), }, styles.bgbarback, radius(12)]}>
+                    <View style={[styles.row,radius(12), styles.spaceEvenly,marginPosition(10, 20, 0, 15), { width: widthValue(1.1), },darkmode? styles.bgbarback:styles.bgbuttonsbar, ]}>
                     <GraphButtons btnText={'Custom'}
                         onPress={gotoCalendarPage}
                         btnStyle={[radius(12),
-                        padding(0, 8, 17),
-                        activeButton==='custom'? styles.bggreen :''
+                        padding(0, 8, 24),
+                        activeButton ==='custom'?styles.bggreen :''
                          
                         ]}
-                        fontStyle={[fontSize(18), styles.fontwhite,]}
+                        fontStyle={[fontSize(18), darkmode? styles.fontwhite:styles.black, activeButton === 'custom' ?styles.white:darkmode?styles.white:styles.black]}
                     />
                     <GraphButtons btnText={'Today'}
                         onPress={()=>handleGraphPage(0)}
-                        btnStyle={[radius(12), padding(0, 8, 17),
+                        btnStyle={[radius(12), padding(0, 8, 20),
                             activeButton === 0 ? styles.bggreen : ''
                         ]}
-                        fontStyle={[fontSize(18), styles.fontwhite,]}
+                        fontStyle={[fontSize(18),darkmode?styles.fontwhite:styles.black, activeButton === 0 ? styles.white:darkmode?styles.white:styles.black]}
                     /> 
                      <GraphButtons btnText={'Week'}
                         onPress={()=>handleGraphPage(1)}
-                        btnStyle={[radius(12), padding(0, 8, 17),
+                        btnStyle={[radius(12), padding(0, 8, 20),
                             activeButton === 1 ? styles.bggreen : '' ]}
-                        fontStyle={[fontSize(18), styles.fontwhite,]}
+                        fontStyle={[fontSize(18), darkmode? styles.fontwhite:styles.black, activeButton === 1 ?styles.white:darkmode?styles.white:styles.black]}
                     />
                     <GraphButtons btnText={'Month'}
                         onPress={()=>handleGraphPage(2)}
-                        btnStyle={[radius(12), padding(0, 8, 17),
+                        btnStyle={[radius(12), padding(0, 8, 24),
                             activeButton === 2 ? styles.bggreen : '' ]}
-                        fontStyle={[fontSize(18), styles.fontwhite,]}
+                        fontStyle={[fontSize(18), darkmode? styles.fontwhite:styles.black, activeButton === 2 ?styles.white:darkmode?styles.white:styles.black]}
                     />
                 </View>
                 {calendarScreen?  <CalendarPage /> :(

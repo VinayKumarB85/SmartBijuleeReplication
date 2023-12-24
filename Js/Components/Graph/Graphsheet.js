@@ -8,9 +8,12 @@ import {
     VictoryAxis
 } from 'victory-native';
 import { widthValue, styles, heightValue, fontSize, screenHeight, marginPosition } from '../../Utils/Styles';
+import { useSelector } from 'react-redux';
 
 const Graphsheet = ({ data, xValue, yValue }) => {
 
+    const darkmode=useSelector((state)=>state.system.darkMode);
+    console.log('darkmodeeeee',darkmode);
     const [number,setNumber] = useState(data);
 
     useEffect(() => {
@@ -34,9 +37,9 @@ const Graphsheet = ({ data, xValue, yValue }) => {
             <VictoryChart domainPadding={{ x: width / 15 }} height={height / 2.3}>
             <VictoryBar
                     data={data.map(d => ({ x: d[xValue], y: fixedBarHeight }))}
-                    style={{ data: { fill: '#3c3c42' } }}
+                    style={{ data: { fill: darkmode ? '#3c3c42': '#cfcccc' } }}
                     barWidth={widthValue(28)}
-                    cornerRadius={{ top: 6 }}
+                    cornerRadius={{ top: 8.5, bottom: 8.5 }}
                 />
                 <VictoryBar
                     labelComponent={<VictoryTooltip></VictoryTooltip>}
@@ -54,7 +57,7 @@ const Graphsheet = ({ data, xValue, yValue }) => {
                     
                     }
                     barWidth={widthValue(28)}
-                    cornerRadius={{ top: 9, bottom: 8 }}
+                    cornerRadius={{ top: 8.5, bottom: 8.5 }}
                 />
                 <VictoryAxis
                     style={{

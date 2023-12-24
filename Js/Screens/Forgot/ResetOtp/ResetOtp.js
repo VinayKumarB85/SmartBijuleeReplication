@@ -50,7 +50,7 @@ const ResetOtp = ({ navigation,route}) => {
        
       const otpResp = await dispatch(otpVerifyApi(
           {
-              "LoginID":route.params.id,
+              "LoginID":globalVariableOtp.auth.user.data.CANumber,
               "otp": enteredOtp,
               "smsTypeID": 2
             }
